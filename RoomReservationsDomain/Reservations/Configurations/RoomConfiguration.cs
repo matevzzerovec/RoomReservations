@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RoomReservationsDomain.Reservations.Models;
+using RoomReservationsDAL.Reservations.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsDomain.Reservations.Configurations
+namespace RoomReservationsDAL.Reservations.Configurations
 {
     public class RoomConfiguration : IEntityTypeConfiguration<Room>
     {
