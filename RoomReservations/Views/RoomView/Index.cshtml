@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Hotel Elitostroj";
+}
+
+@model RoomReservationsUI.Models.Shared.Room
+
+<br />
+
+<div class="text-center">
+    <h4>Dobrodošli na spletni strani hotela Elitostroj</h4>
+    <p>Vabljeni k pregledu nastanitev!</p>
+
+    <div class="container mt-5">
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">@Model.Name</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>@Model.ShortDescription</strong></p>
+                        <p class="card-text">@Model.LongDescription</p>
+
+                        <h6 class="card-subtitle mb-2 text-muted">Price per night: <strong>@Model.Price.ToString("n2")€</strong></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @if (Model.PictureList != null && Model.PictureList.Any())
+            {
+                @foreach (var picture in Model.PictureList)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <img src="data:image/png;base64,@Convert.ToBase64String(picture.PictureData)" class="card-img-top" alt="Room Picture" />
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p class="text-center text-muted">No pictures available for this room.</p>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
