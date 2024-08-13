@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using RoomReservationsBLL.Services;
 using RoomReservationsDAL.Reservations;
+using RoomReservationsDAL.Reservations.Repositories;
 
 // DEV
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ReservationsDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ReservationsConnection")));
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<IRoomService, RoomService>();
 
 var app = builder.Build();
 

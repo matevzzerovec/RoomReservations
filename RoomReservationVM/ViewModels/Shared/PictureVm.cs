@@ -1,6 +1,6 @@
-﻿namespace RoomReservationsUI.Models.Shared
+﻿namespace RoomReservationsVM.Models.Shared
 {
-    public class Picture
+    public class PictureVm
     {
         public int? RoomPictureId { get; set; }
         public int? RoomId { get; set; }

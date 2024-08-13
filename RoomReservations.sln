@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoomReservationsUI", "RoomR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoomReservationsDAL", "RoomReservationsDomain\RoomReservationsDAL.csproj", "{B053C972-D05B-4894-84FD-12729ADC73DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomReservationsBLL", "RoomReservationsBLL\RoomReservationsBLL.csproj", "{525AE847-9DDF-4368-8B3B-24F1335B0BFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomReservationsVM", "RoomReservationVM\RoomReservationsVM.csproj", "{A809335E-03C4-4D10-BEEA-3B8B927EA0F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B053C972-D05B-4894-84FD-12729ADC73DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B053C972-D05B-4894-84FD-12729ADC73DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B053C972-D05B-4894-84FD-12729ADC73DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{525AE847-9DDF-4368-8B3B-24F1335B0BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{525AE847-9DDF-4368-8B3B-24F1335B0BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{525AE847-9DDF-4368-8B3B-24F1335B0BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{525AE847-9DDF-4368-8B3B-24F1335B0BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A809335E-03C4-4D10-BEEA-3B8B927EA0F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A809335E-03C4-4D10-BEEA-3B8B927EA0F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A809335E-03C4-4D10-BEEA-3B8B927EA0F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A809335E-03C4-4D10-BEEA-3B8B927EA0F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

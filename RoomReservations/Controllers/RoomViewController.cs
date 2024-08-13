@@ -2,28 +2,23 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using RoomReservationsDAL.Reservations;
-using RoomReservationsUI.Mappers;
-using RoomReservationsUI.Models;
-using RoomReservationsUI.Models.Shared;
+using RoomReservationsBLL.Mappers;
+using RoomReservationsBLL.Services;
 
 namespace RoomReservations.Controllers
 {
     public class RoomViewController : Controller
     {
-        private readonly ILogger<RoomViewController> _logger;
-        private readonly ReservationsDbContext _reservationsDb;
+        private readonly IRoomService _roomService;
 
-        public RoomViewController(ILogger<RoomViewController> logger, ReservationsDbContext reservationsDb)
+        public RoomViewController(IRoomService roomService)
         {
-            _logger = logger;
-            _reservationsDb = reservationsDb;
+            _roomService = roomService;
         }
 
         public IActionResult Index()
         {
-            var firstRoomDb = _reservationsDb.Room.OrderByDescending(x => x.RoomId).Include(x => x.RoomPictures).FirstOrDefault();
-            var firstRoomVm = RoomMapper.MapToVm(firstRoomDb);
-
+            var firstRoomVm = _roomService.GetFirstRoom();
             return View("Index", firstRoomVm);
         }
     }

@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RoomReservationsBLL\RoomReservationsBLL.csproj" />
     <ProjectReference Include="..\RoomReservationsDomain\RoomReservationsDAL.csproj" />
+    <ProjectReference Include="..\RoomReservationVM\RoomReservationsVM.csproj" />
   </ItemGroup>
 
 </Project>

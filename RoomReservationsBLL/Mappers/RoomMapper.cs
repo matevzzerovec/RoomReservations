@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RRUI = RoomReservationsUI.Models.Shared;
+﻿using RRVM = RoomReservationsVM.Models.Shared;
 using RRDAL = RoomReservationsDAL.Reservations.Models;
 
-namespace RoomReservationsUI.Mappers
+namespace RoomReservationsBLL.Mappers
 {
     public static class RoomMapper
     {
-        public static RRUI.Room MapToVm(RRDAL.Room roomDb)
+        public static RRVM.RoomVm MapToVm(RRDAL.Room roomDb)
         {
-            var roomVm = new RRUI.Room();
-
-            if (roomDb == null) return roomVm;
+            var roomVm = new RRVM.RoomVm();
 
             roomVm.RoomId = roomDb.RoomId;
             roomVm.Name = roomDb.Name;
@@ -24,7 +17,7 @@ namespace RoomReservationsUI.Mappers
 
             foreach (var pictureDb in roomDb.RoomPictures)
             {
-                var pictureVm = new RRUI.Picture();
+                var pictureVm = new RRVM.PictureVm();
 
                 pictureVm.RoomId = pictureDb.RoomId;
                 pictureVm.PictureData = pictureDb.PictureData;
