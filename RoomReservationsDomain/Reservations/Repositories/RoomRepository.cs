@@ -18,6 +18,11 @@ namespace RoomReservationsDAL.Reservations.Repositories
             _context = context;
         }
 
+        public IQueryable<Room> GetAll()
+        {
+            return _context.Room;
+        }
+
         public Room GetFirstRoomWithPictures()
         {
             return _context.Room.Include(x => x.RoomPictures).OrderBy(x => x.RoomId).First();

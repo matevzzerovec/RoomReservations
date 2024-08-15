@@ -7,13 +7,6 @@
 
     @Html.AntiForgeryToken()
 
-    @* <input type="hidden" name="RoomId" value="@Model.RoomId" />
-    <input type="hidden" name="Name" value="@Model.Name" />
-    <input type="hidden" name="Price" value="@Model.Price" />
-    <input type="hidden" name="ShortDescription" value="@Model.ShortDescription" />
-    <input type="hidden" name="LongDescription" value="@Model.LongDescription" />
-    <input type="hidden" name="RoomIdList" value="@string.Join(",", Model.RoomIdList)" />
- *@
     <input type="hidden" asp-for="RoomId" />
     <input type="hidden" asp-for="Name" />
     <input type="hidden" asp-for="Price" />
@@ -22,7 +15,6 @@
 
     @for (int i = 0; i < Model.RoomIdList.Count; i++)
     {
-
         <input type="hidden" asp-for="RoomIdList[i]" />
     }
 
@@ -63,48 +55,12 @@
 
                 </div>
             </div>
+   
+            <partial name="~/Views/RoomView/BookingPartial.cshtml" model="Model.BookingVm" />
 
-            @if (Model.PictureList != null && Model.PictureList.Any())
-            {
-                <div class="row justify-content-center">
-                    <div class="col-md-7">
+            <br />
 
-                        <div id="picturesCarusel" class="carousel slide">
-
-                            <div class="carousel-inner">
-                                @{
-                                    int ctPictures = 0;
-
-                                    foreach (var picture in Model.PictureList)
-                                    {
-                                        <div class="carousel-item @(ctPictures==0 ? "active" : "")">
-                                            <img src="data:image/png;base64,@Convert.ToBase64String(picture.PictureData)" class="d-block card-img-top" alt="Slika sobe" />
-                                        </div>
-
-                                        ctPictures++;
-                                    }
-                                }
-                            </div>
-
-                            <button class="carousel-control-prev" type="button" data-bs-target="#picturesCarusel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#picturesCarusel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="col-12">
-                    <p class="text-center text-muted">No pictures available for this room.</p>
-                </div>
-            }
+            <partial name="~/Views/RoomView/PicturesPartial.cshtml" />
 
         </div>
 

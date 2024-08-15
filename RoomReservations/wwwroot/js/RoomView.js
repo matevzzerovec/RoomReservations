@@ -1,11 +1,23 @@
 ﻿let formSubmitting = false;
 
 $(function () {
-    Init();    
+    Init();
 });
 
 function Init() {
     feather.replace();
+
+    $('#ArrivalDate').datepicker({
+        format: 'dd.mm.yyyy',
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    $('#DepartureDate').datepicker({
+        format: 'dd.mm.yyyy',
+        autoclose: true,
+        todayHighlight: true
+    });
 }
 
 
