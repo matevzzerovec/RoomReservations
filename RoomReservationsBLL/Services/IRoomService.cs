@@ -10,5 +10,9 @@ namespace RoomReservationsBLL.Services
     public interface IRoomService
     {
         RoomVm GetFirstRoom();
+
+        RoomVm GetNextRoom(int roomId, List<int> roomIdList);
+
+        RoomVm GetPrevRoom(int roomId, List<int> roomIdList);
     }
 }

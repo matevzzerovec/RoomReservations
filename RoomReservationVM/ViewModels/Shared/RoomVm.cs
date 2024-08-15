@@ -2,6 +2,8 @@
 {
     public class RoomVm
     {
+        public List<int> RoomIdList { get; set; } = new List<int>();
+
         public int? RoomId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }

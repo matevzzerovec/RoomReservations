@@ -1,44 +1,103 @@
 ﻿@{
     ViewData["Title"] = "Hotel Elitostroj";
 }
-
 @model RoomReservationsVM.Models.Shared.RoomVm
 
-<br />
+<form asp-controller="RoomView" method="post">
 
-<div class="text-center">
-    <h4>Dobrodošli na spletni strani hotela Elitostroj</h4>
-    <p>Vabljeni k pregledu nastanitev!</p>
+    @Html.AntiForgeryToken()
 
-    <div class="container mt-5">
+    @* <input type="hidden" name="RoomId" value="@Model.RoomId" />
+    <input type="hidden" name="Name" value="@Model.Name" />
+    <input type="hidden" name="Price" value="@Model.Price" />
+    <input type="hidden" name="ShortDescription" value="@Model.ShortDescription" />
+    <input type="hidden" name="LongDescription" value="@Model.LongDescription" />
+    <input type="hidden" name="RoomIdList" value="@string.Join(",", Model.RoomIdList)" />
+ *@
+    <input type="hidden" asp-for="RoomId" />
+    <input type="hidden" asp-for="Name" />
+    <input type="hidden" asp-for="Price" />
+    <input type="hidden" asp-for="ShortDescription" />
+    <input type="hidden" asp-for="LongDescription" />
 
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5 class="card-title">@Model.Name</h5>
+    @for (int i = 0; i < Model.RoomIdList.Count; i++)
+    {
+
+        <input type="hidden" asp-for="RoomIdList[i]" />
+    }
+
+    <br />
+
+    <div class="text-center">
+        <h4>Dobrodošli na spletni strani hotela Elitostroj</h4>
+        <p>Vabljeni k pregledu nastanitev!</p>
+
+        <div class="container mt-5">
+
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+
+
+                    <div class="card mb-4">
+
+                        <button asp-action="PreviousRoom" class="float-button float-button-left" type="submit" disabled>
+                            <span data-feather="arrow-left"></span>
+                        </button>
+
+                        <div class="card-header">
+                            <h5 class="card-title">@Model.Name</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>@Model.ShortDescription</strong></p>
+                            <p class="card-text">@Model.LongDescription</p>
+
+                            <h6 class="card-subtitle mb-2 text-muted">Price per night: <strong>@Model.Price.ToString("n2")€</strong></h6>
+                        </div>
+
+                        <button asp-action="NextRoom" class="float-button float-button-right" type="submit" disabled>
+                            <span data-feather="arrow-right"></span>
+                        </button>
+
                     </div>
-                    <div class="card-body">
-                        <p class="card-text"><strong>@Model.ShortDescription</strong></p>
-                        <p class="card-text">@Model.LongDescription</p>
 
-                        <h6 class="card-subtitle mb-2 text-muted">Price per night: <strong>@Model.Price.ToString("n2")€</strong></h6>
-                    </div>
+
                 </div>
             </div>
-        </div>
 
-        <div class="row">
             @if (Model.PictureList != null && Model.PictureList.Any())
             {
-                @foreach (var picture in Model.PictureList)
-                {
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <img src="data:image/png;base64,@Convert.ToBase64String(picture.PictureData)" class="card-img-top" alt="Room Picture" />
+                <div class="row justify-content-center">
+                    <div class="col-md-7">
+
+                        <div id="picturesCarusel" class="carousel slide">
+
+                            <div class="carousel-inner">
+                                @{
+                                    int ctPictures = 0;
+
+                                    foreach (var picture in Model.PictureList)
+                                    {
+                                        <div class="carousel-item @(ctPictures==0 ? "active" : "")">
+                                            <img src="data:image/png;base64,@Convert.ToBase64String(picture.PictureData)" class="d-block card-img-top" alt="Slika sobe" />
+                                        </div>
+
+                                        ctPictures++;
+                                    }
+                                }
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#picturesCarusel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#picturesCarusel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
+
                     </div>
-                }
+                </div>
             }
             else
             {
@@ -46,8 +105,9 @@
                     <p class="text-center text-muted">No pictures available for this room.</p>
                 </div>
             }
+
         </div>
 
     </div>
 
-</div>
+</form>

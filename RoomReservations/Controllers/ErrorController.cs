@@ -30,7 +30,7 @@ namespace RoomReservationsUI.Controllers
                 _logger.LogError("Stack Trace: {StackTrace}", exception.StackTrace);
             }
 
-            var vm = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+            var vm = new ErrorVm { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
             return View("~/Views/Shared/Error/GenericError.cshtml", vm);
         }
 
@@ -46,7 +46,7 @@ namespace RoomReservationsUI.Controllers
             else
             {
                 // Log if needed
-                var vm = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+                var vm = new ErrorVm { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
                 return View("~/Views/Shared/Error/GenericError.cshtml", vm);
             }
         }

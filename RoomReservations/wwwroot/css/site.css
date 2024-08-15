@@ -20,3 +20,27 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.float-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: transparent;
+    color: #808080;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.float-button-left {
+    width: 4rem;
+    height: 4rem;
+    left: -50px;
+}
+
+.float-button-right {
+    width: 4rem;
+    height: 4rem;
+    right: -50px;
+}
