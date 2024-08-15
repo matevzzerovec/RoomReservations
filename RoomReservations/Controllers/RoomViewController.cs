@@ -11,10 +11,14 @@ namespace RoomReservations.Controllers
     public class RoomViewController : Controller
     {
         private readonly IRoomService _roomService;
+        private readonly IRegistryService _registryService;
 
-        public RoomViewController(IRoomService roomService)
+        public RoomViewController(
+            IRoomService roomService, 
+            IRegistryService registryService)
         {
             _roomService = roomService;
+            _registryService = registryService;
         }
 
         [HttpGet]
@@ -22,7 +26,7 @@ namespace RoomReservations.Controllers
         {
             var firstRoomVm = _roomService.GetFirstRoom();
             
-            _roomService.FillRoomSelectList(firstRoomVm);
+            _registryService.FillRoomSelectList(firstRoomVm);
 
             return View("Index", firstRoomVm);
         }
@@ -32,8 +36,8 @@ namespace RoomReservations.Controllers
         public IActionResult NextRoom(RoomVm roomVm)
         {
             var nextRoomVm = _roomService.GetNextRoom(roomVm.RoomId.GetValueOrDefault(), roomVm.RoomIdList);
-            
-            _roomService.FillRoomSelectList(nextRoomVm);
+
+            _registryService.FillRoomSelectList(nextRoomVm);
 
             ModelState.Clear();
 
@@ -45,8 +49,8 @@ namespace RoomReservations.Controllers
         public IActionResult PreviousRoom(RoomVm roomVm)
         {
             var prevRoomVm = _roomService.GetPrevRoom(roomVm.RoomId.GetValueOrDefault(), roomVm.RoomIdList);
-            
-            _roomService.FillRoomSelectList(prevRoomVm);
+
+            _registryService.FillRoomSelectList(prevRoomVm);
 
             ModelState.Clear();
 

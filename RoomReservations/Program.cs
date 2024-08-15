@@ -17,6 +17,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ReservationsDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ReservationsConnection")));
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomService, RoomService>();
+builder.Services.AddScoped<IRegistryService, RegistryService>();
 
 var app = builder.Build();
 

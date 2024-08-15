@@ -20,24 +20,6 @@ namespace RoomReservationsBLL.Services
             _roomRepository = roomRepository;
         }
 
-        public void FillRoomSelectList(RoomVm roomVm)
-        {
-            var allRooms = _roomRepository.GetAll();
-
-            // Generate select list and prepend "Izberi"/empty element
-            var selectList = allRooms.Select(r => new SelectListItem
-            {
-                Value = r.RoomId.ToString(),
-                Text = r.Name
-            }).ToList();
-
-            selectList.Insert(0, new SelectListItem { Value = "", Text = "-- Izberi sobo --", Selected = true });
-
-            roomVm.BookingVm.RoomSelectList = new SelectList(selectList, "Value", "Text");
-
-            return;
-        }
-
         public RoomVm GetFirstRoom()
         {
             var firstRoomDb = _roomRepository.GetFirstRoomWithPictures();
