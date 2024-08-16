@@ -1,4 +1,5 @@
-﻿using RoomReservationsVM.Models.Shared;
+﻿using RoomReservationsVM.ViewModels.Booking;
+using RoomReservationsVM.ViewModels.RoomView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace RoomReservationsBLL.Services
 {
     public interface IRegistryService
     {
-        void FillRoomSelectList(RoomVm roomVm);
+        void FillRoomSelectList(BookingVm bookingVm);
     }
 }

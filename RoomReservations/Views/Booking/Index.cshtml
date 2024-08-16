@@ -1,0 +1,41 @@
+﻿@model RoomReservationsVM.ViewModels.Booking.BookingVm
+
+@{
+    ViewData["Title"] = "Hotel Elitostroj";
+}
+
+@section Scripts {
+    <script src="~/js/Booking.js" asp-append-version="true"></script>
+}
+
+<form asp-controller="Booking" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="ClientFeedback" />
+
+    <br />
+
+    <div class="text-center">
+        <h4>Rezervacija sobe</h4>
+
+        <div class="container mt-5">
+
+            <partial name="~/Views/Booking/BookingPartial.cshtml" />
+
+        </div>
+
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ClientFeedback))
+    {
+        <br />
+        <br />
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@Model.ClientFeedback</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+</form>

@@ -3,7 +3,7 @@ using RoomReservationsBLL.Mappers;
 using RoomReservationsBLL.Modules;
 using RoomReservationsDAL.Reservations.Models;
 using RoomReservationsDAL.Reservations.Repositories;
-using RoomReservationsVM.Models.Shared;
+using RoomReservationsVM.ViewModels.RoomView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,9 +56,7 @@ namespace RoomReservationsBLL.Services
 
             var roomVm = RoomMapper.MapToVm(roomDb);
 
-            // Pass the values to the new view
             roomVm.RoomIdList = oldRoom.RoomIdList;
-            roomVm.BookingVm = oldRoom.BookingVm;
 
             return roomVm;
         }

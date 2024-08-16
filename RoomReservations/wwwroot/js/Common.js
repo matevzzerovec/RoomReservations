@@ -7,19 +7,6 @@ $(function () {
 function Init() {
     // data-feather icons init
     feather.replace();
-
-    // jQuery datepicker init and format
-    $('#BookingVm_ArrivalDate').datepicker({
-        format: 'dd.mm.yyyy',
-        autoclose: true,
-        todayHighlight: true
-    });
-
-    $('#BookingVm_DepartureDate').datepicker({
-        format: 'dd.mm.yyyy',
-        autoclose: true,
-        todayHighlight: true 
-    });
 }
 
 

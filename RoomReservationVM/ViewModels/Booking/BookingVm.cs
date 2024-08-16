@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,16 +11,28 @@ namespace RoomReservationsVM.ViewModels.Booking
 {
     public class BookingVm
     {
-        [DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
+        [ValidateNever]
+        public string ClientFeedback { get; set; }
+
+        [Required(ErrorMessage = "Polje je obvezno"), DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ArrivalDate { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Polje je obvezno"), DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DepartureDate { get; set; }
 
+        [ValidateNever]
         public SelectList RoomSelectList { get; set; }
+
+        [Required(ErrorMessage = "Polje je obvezno")]
         public int? SelectedRoomId { get; set; }
+
+        [Required(ErrorMessage = "Prosimo vnesite veljaven e-mail naslov"), EmailAddress]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Polje je obvezno"), Phone, RegularExpression(@"^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$", ErrorMessage = "Prosimo vnesite veljavno telefonsko številko vključno s kodo države.")]
         public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Polje je obvezno")]
         public string CustomerNote { get; set; }
     }
 }

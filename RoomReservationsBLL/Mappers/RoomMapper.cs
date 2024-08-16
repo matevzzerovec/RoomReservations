@@ -1,4 +1,4 @@
-﻿using RRVM = RoomReservationsVM.Models.Shared;
+﻿using RRVM = RoomReservationsVM.ViewModels.RoomView;
 using RRDAL = RoomReservationsDAL.Reservations.Models;
 
 namespace RoomReservationsBLL.Mappers

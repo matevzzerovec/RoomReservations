@@ -1,6 +1,4 @@
-﻿using RoomReservationsVM.ViewModels.Booking;
-
-namespace RoomReservationsVM.Models.Shared
+﻿namespace RoomReservationsVM.ViewModels.RoomView
 {
     public class RoomVm
     {
@@ -12,7 +10,5 @@ namespace RoomReservationsVM.Models.Shared
         public string? ShortDescription { get; set; }
         public string? LongDescription { get; set; }
         public List<PictureVm> PictureList { get; set; } = new List<PictureVm>();
-
-        public BookingVm BookingVm { get; set; } = new BookingVm();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using RoomReservations.Controllers;
-using RoomReservationsVM.Models;
+using RoomReservationsVM.ViewModels;
 using System.Diagnostics;
 
 namespace RoomReservationsUI.Controllers

@@ -1,4 +1,4 @@
-﻿namespace RoomReservationsVM.Models.Shared
+﻿namespace RoomReservationsVM.ViewModels.RoomView
 {
     public class PictureVm
     {

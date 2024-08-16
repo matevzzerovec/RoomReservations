@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using RoomReservationsDAL.Reservations.Repositories;
-using RoomReservationsVM.Models.Shared;
+using RoomReservationsVM.ViewModels.Booking;
+using RoomReservationsVM.ViewModels.RoomView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace RoomReservationsBLL.Services
             _roomRepository = roomRepository;
         }
 
-        public void FillRoomSelectList(RoomVm roomVm)
+        public void FillRoomSelectList(BookingVm bookingVm)
         {
             var allRooms = _roomRepository.GetAll();
 
@@ -31,7 +32,7 @@ namespace RoomReservationsBLL.Services
 
             selectList.Insert(0, new SelectListItem { Value = "", Text = "-- Izberi sobo --", Selected = true });
 
-            roomVm.BookingVm.RoomSelectList = new SelectList(selectList, "Value", "Text");
+            bookingVm.RoomSelectList = new SelectList(selectList, "Value", "Text");
 
             return;
         }
