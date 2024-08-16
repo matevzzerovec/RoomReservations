@@ -8,12 +8,12 @@ namespace RoomReservationsBLL.Modules
 {
     internal static class IdLooperModule
     {
-        internal static int GetNextId(int roomId, List<int> roomIdList)
+        internal static int GetNextId(int currentRoomId, List<int> roomIdList)
         {
             // If only element in list, return current RoomId
-            if (roomIdList.Count <= 1) return roomId;
+            if (roomIdList.Count <= 1) return currentRoomId;
 
-            var indexOfCurrent = roomIdList.IndexOf(roomId);
+            var indexOfCurrent = roomIdList.IndexOf(currentRoomId);
 
             if (indexOfCurrent + 1 == roomIdList.Count)
             {
@@ -26,12 +26,12 @@ namespace RoomReservationsBLL.Modules
             }
         }
 
-        internal static int GetPrevId(int roomId, List<int> roomIdList)
+        internal static int GetPrevId(int currentRoomId, List<int> roomIdList)
         {
             // If only element in list, return current RoomId
-            if (roomIdList.Count <= 1) return roomId;
+            if (roomIdList.Count <= 1) return currentRoomId;
 
-            var indexOfCurrent = roomIdList.IndexOf(roomId);
+            var indexOfCurrent = roomIdList.IndexOf(currentRoomId);
 
             if (indexOfCurrent == 0)
             {

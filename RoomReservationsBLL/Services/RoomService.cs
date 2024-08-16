@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using RoomReservationsBLL.Mappers;
 using RoomReservationsBLL.Modules;
+using RoomReservationsDAL.Reservations.Models;
 using RoomReservationsDAL.Reservations.Repositories;
 using RoomReservationsVM.Models.Shared;
 using System;
@@ -33,28 +34,31 @@ namespace RoomReservationsBLL.Services
             return firstRoomVm;
         }
 
-        public RoomVm GetNextRoom(int currentRoomId, List<int> roomIdList)
+        public RoomVm GetNextRoom(RoomVm roomVm)
         {
-            var nextId = IdLooperModule.GetNextId(currentRoomId, roomIdList);
+            var nextId = IdLooperModule.GetNextId(roomVm.RoomId.GetValueOrDefault(), roomVm.RoomIdList);
 
-            return AssembleNewRoom(roomIdList, nextId);
+            return AssembleNewRoom(roomVm, nextId);
         }
 
-        public RoomVm GetPrevRoom(int currentRoomId, List<int> roomIdList)
+        public RoomVm GetPrevRoom(RoomVm roomVm)
         {
-            var nextId = IdLooperModule.GetPrevId(currentRoomId, roomIdList);
+            var prevId = IdLooperModule.GetPrevId(roomVm.RoomId.GetValueOrDefault(), roomVm.RoomIdList);
 
-            return AssembleNewRoom(roomIdList, nextId);
+            return AssembleNewRoom(roomVm, prevId);
         }
 
-        private RoomVm AssembleNewRoom(List<int> roomIdList, int nextId)
+        private RoomVm AssembleNewRoom(RoomVm oldRoom, int nextId)
         {
             var roomDb = _roomRepository.GetRoomWithPictures(nextId);
 
             if (roomDb == null) return new RoomVm();
 
             var roomVm = RoomMapper.MapToVm(roomDb);
-            roomVm.RoomIdList = roomIdList;
+
+            // Pass the values to the new view
+            roomVm.RoomIdList = oldRoom.RoomIdList;
+            roomVm.BookingVm = oldRoom.BookingVm;
 
             return roomVm;
         }

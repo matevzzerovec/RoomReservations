@@ -5,18 +5,20 @@ $(function () {
 });
 
 function Init() {
+    // data-feather icons init
     feather.replace();
 
-    $('#ArrivalDate').datepicker({
+    // jQuery datepicker init and format
+    $('#BookingVm_ArrivalDate').datepicker({
         format: 'dd.mm.yyyy',
         autoclose: true,
         todayHighlight: true
     });
 
-    $('#DepartureDate').datepicker({
+    $('#BookingVm_DepartureDate').datepicker({
         format: 'dd.mm.yyyy',
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true 
     });
 }
 

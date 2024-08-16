@@ -35,7 +35,7 @@ namespace RoomReservations.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult NextRoom(RoomVm roomVm)
         {
-            var nextRoomVm = _roomService.GetNextRoom(roomVm.RoomId.GetValueOrDefault(), roomVm.RoomIdList);
+            var nextRoomVm = _roomService.GetNextRoom(roomVm);
 
             _registryService.FillRoomSelectList(nextRoomVm);
 
@@ -48,7 +48,7 @@ namespace RoomReservations.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PreviousRoom(RoomVm roomVm)
         {
-            var prevRoomVm = _roomService.GetPrevRoom(roomVm.RoomId.GetValueOrDefault(), roomVm.RoomIdList);
+            var prevRoomVm = _roomService.GetPrevRoom(roomVm);
 
             _registryService.FillRoomSelectList(prevRoomVm);
 

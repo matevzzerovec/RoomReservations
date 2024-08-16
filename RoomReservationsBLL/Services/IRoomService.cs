@@ -11,8 +11,8 @@ namespace RoomReservationsBLL.Services
     {        
         RoomVm GetFirstRoom();
 
-        RoomVm GetNextRoom(int roomId, List<int> roomIdList);
+        RoomVm GetNextRoom(RoomVm roomVm);
 
-        RoomVm GetPrevRoom(int roomId, List<int> roomIdList);
+        RoomVm GetPrevRoom(RoomVm roomVm);
     }
 }
