@@ -1,0 +1,29 @@
+﻿@model RoomReservationsVM.Models.Shared.RoomVm
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="card mb-4">
+
+            <button asp-action="PreviousRoom" class="float-button float-button-left" type="submit" disabled>
+                <span data-feather="arrow-left"></span>
+            </button>
+
+            <div class="card-header">
+                <h5 class="card-title">@Model.Name</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>@Model.ShortDescription</strong></p>
+                <p class="card-text">@Model.LongDescription</p>
+
+                <h6 class="card-subtitle mb-2 text-muted">Cena na noč: <strong>@Model.Price.ToString("n2")€</strong></h6>
+            </div>
+
+            <button asp-action="NextRoom" class="float-button float-button-right" type="submit" disabled>
+                <span data-feather="arrow-right"></span>
+            </button>
+
+        </div>
+
+    </div>
+</div>

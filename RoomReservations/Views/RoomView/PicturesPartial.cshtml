@@ -1,5 +1,7 @@
 ﻿@model RoomReservationsVM.Models.Shared.RoomVm
 
+<br />
+
 @if (Model.PictureList != null && Model.PictureList.Any())
 {
     <div class="row justify-content-center">
@@ -37,7 +39,7 @@
 }
 else
 {
-    <div class="col-12">
+    <div class="col-7">
         <p class="text-center text-muted">No pictures available for this room.</p>
     </div>
 }
