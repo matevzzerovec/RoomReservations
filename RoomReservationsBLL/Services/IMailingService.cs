@@ -10,5 +10,6 @@ namespace RoomReservationsBLL.Services
     public interface IMailingService
     {
         bool SendMailToClient(BookingVm bookingVm);
+        bool SendMailToHotel(BookingVm bookingVm);
     }
 }

@@ -17,6 +17,8 @@ namespace RoomReservationsDAL.Reservations.Repositories
 
         decimal GetRoomPrice(int roomId);
 
+        Room GetRoom(int roomId);
+
         Room GetRoomWithPictures(int roomId);
     }
 }

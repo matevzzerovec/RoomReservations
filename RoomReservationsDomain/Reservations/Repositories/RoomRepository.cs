@@ -46,9 +46,14 @@ namespace RoomReservationsDAL.Reservations.Repositories
             }
         }
 
+        public Room GetRoom(int roomId)
+        {
+            return _context.Room.SingleOrDefault(x => x.RoomId == roomId);
+        }
+
         public Room GetRoomWithPictures(int roomId)
         {
-            return _context.Room.Include(x => x.RoomPictures).Single(x => x.RoomId == roomId);
+            return _context.Room.Include(x => x.RoomPictures).SingleOrDefault(x => x.RoomId == roomId);
         }
     }
 }

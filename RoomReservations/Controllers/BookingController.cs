@@ -31,8 +31,6 @@ namespace RoomReservationsUI.Controllers
         {
             var bookingVm = new BookingVm();
 
-            _mailingService.SendMailToClient(bookingVm);
-
             _registryService.FillRoomSelectList(bookingVm);
 
             return View("Index", bookingVm);
@@ -61,10 +59,12 @@ namespace RoomReservationsUI.Controllers
             if (!_mailingService.SendMailToClient(bookingVm))
             {
                 bookingVm.IsMailingError = true;
-                bookingVm.ClientFeedback = "Rezervacija je uspešna, a je prišlo do napake pri pošiljanju e-maila. Prosimo kontaktirajte hotel.";
+                bookingVm.ClientFeedback = "Rezervacija je uspešna, a je prišlo do napake pri pošiljanju e-maila.";
 
                 return View("Index", bookingVm);
             }
+
+            _mailingService.SendMailToHotel(bookingVm);
 
             bookingVm.ClientFeedback = "Rezervacija uspešna! Na e-mail smo vam poslali podrobnosti rezervacije.";
 
