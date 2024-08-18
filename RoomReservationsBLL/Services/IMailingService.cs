@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomReservationsVM.ViewModels.Booking;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace RoomReservationsBLL.Services
 {
     public interface IMailingService
     {
+        bool SendMailToClient(BookingVm bookingVm);
     }
 }

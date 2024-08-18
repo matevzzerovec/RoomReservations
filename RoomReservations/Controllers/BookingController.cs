@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using RoomReservationsBLL.Services;
 using RoomReservationsBLL.Validators.Booking;
+using RoomReservationsVM.Configuration;
 using RoomReservationsVM.ViewModels.Booking;
 using RoomReservationsVM.ViewModels.RoomView;
 
@@ -11,17 +13,25 @@ namespace RoomReservationsUI.Controllers
         private readonly IRegistryService _registryService;
         private readonly IBookingValidator _bookingValidator;
         private readonly IBookingService _bookingService;
+        private readonly IMailingService _mailingService;
 
-        public BookingController(IRegistryService registryService, IBookingValidator bookingValidator, IBookingService bookingService)
+        public BookingController(
+            IRegistryService registryService, 
+            IBookingValidator bookingValidator, 
+            IBookingService bookingService, 
+            IMailingService mailingService)
         {
             _registryService = registryService;
             _bookingValidator = bookingValidator;
             _bookingService = bookingService;
+            _mailingService = mailingService;
         }
 
         public IActionResult Index()
         {
             var bookingVm = new BookingVm();
+
+            _mailingService.SendMailToClient(bookingVm);
 
             _registryService.FillRoomSelectList(bookingVm);
 
@@ -48,11 +58,13 @@ namespace RoomReservationsUI.Controllers
                 return View("Index", bookingVm);
             }
 
-            //// TODO mailing
-            //if (true)
-            //{
+            if (!_mailingService.SendMailToClient(bookingVm))
+            {
+                bookingVm.IsMailingError = true;
+                bookingVm.ClientFeedback = "Rezervacija je uspešna, a je prišlo do napake pri pošiljanju e-maila. Prosimo kontaktirajte hotel.";
 
-            //}
+                return View("Index", bookingVm);
+            }
 
             bookingVm.ClientFeedback = "Rezervacija uspešna! Na e-mail smo vam poslali podrobnosti rezervacije.";
 
