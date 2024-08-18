@@ -12,7 +12,7 @@ namespace RoomReservationsDAL.Reservations.Models
         public int RoomId { get; set; }
         public byte[] PictureData { get; set; }
 
-        // Reverse navigation
+        // Navigation property
         public Room Room { get; set; } = new Room();
     }
 }

@@ -9,12 +9,14 @@ namespace RoomReservationsDAL.Reservations.Repositories
 {
     public interface IRoomRepository
     {
+        List<int> GetRoomIdList();
+
         IQueryable<Room> GetAll();
 
         Room GetFirstRoomWithPictures();
 
-        Room GetRoomWithPictures(int roomId);
+        decimal GetRoomPrice(int roomId);
 
-        List<int> GetRoomIdList();
+        Room GetRoomWithPictures(int roomId);
     }
 }

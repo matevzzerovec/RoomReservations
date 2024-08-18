@@ -19,7 +19,7 @@ namespace RoomReservationsBLL.Services
             _roomRepository = roomRepository;
         }
 
-        public void FillRoomSelectList(BookingVm bookingVm)
+        public BookingVm FillRoomSelectList(BookingVm bookingVm)
         {
             var allRooms = _roomRepository.GetAll();
 
@@ -34,7 +34,7 @@ namespace RoomReservationsBLL.Services
 
             bookingVm.RoomSelectList = new SelectList(selectList, "Value", "Text");
 
-            return;
+            return bookingVm;
         }
     }
 }

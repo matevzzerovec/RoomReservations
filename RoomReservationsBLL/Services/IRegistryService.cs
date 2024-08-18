@@ -10,6 +10,6 @@ namespace RoomReservationsBLL.Services
 {
     public interface IRegistryService
     {
-        void FillRoomSelectList(BookingVm bookingVm);
+        BookingVm FillRoomSelectList(BookingVm bookingVm);
     }
 }

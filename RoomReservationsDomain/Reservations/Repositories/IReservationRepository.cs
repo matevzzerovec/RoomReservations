@@ -10,5 +10,6 @@ namespace RoomReservationsDAL.Reservations.Repositories
     public interface IReservationRepository
     {
         bool IsRoomAvalible(int roomId, DateTime arrivalDate, DateTime departureDate);
+        void Add(Reservation reservationDb);
     }
 }

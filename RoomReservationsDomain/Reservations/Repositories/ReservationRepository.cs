@@ -19,6 +19,7 @@ namespace RoomReservationsDAL.Reservations.Repositories
         public bool IsRoomAvalible(int roomId, DateTime arrivalDate, DateTime departureDate)
         {
             // Check for room overlaps
+            // https://stackoverflow.com/questions/13513932/algorithm-to-detect-overlapping-periods
             var overlap = _context.Reservation.Any(
                 x => x.RoomId == roomId &&
                 x.ArrivalDate.Date < departureDate.Date &&
@@ -26,6 +27,12 @@ namespace RoomReservationsDAL.Reservations.Repositories
             );
 
             return !overlap;
+        }
+
+        public void Add(Reservation reservationDb)
+        {
+            _context.Add(reservationDb);
+            _context.SaveChanges();
         }
     }
 }

@@ -8,9 +8,9 @@ namespace RoomReservationsUI.Controllers
 {
     public class ErrorController : Controller
     {
-        private readonly ILogger<RoomViewController> _logger;
+        private readonly ILogger<ErrorController> _logger;
 
-        public ErrorController(ILogger<RoomViewController> logger)
+        public ErrorController(ILogger<ErrorController> logger)
         {
             _logger = logger;
         }

@@ -14,6 +14,13 @@ namespace RoomReservationsVM.ViewModels.Booking
         [ValidateNever]
         public string ClientFeedback { get; set; }
 
+        [ValidateNever]
+        public bool IsBookingError { get; set; }
+
+        [ValidateNever]
+        public bool IsMailingError { get; set; }
+
+
         [Required(ErrorMessage = "Polje je obvezno"), DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ArrivalDate { get; set; }
 
@@ -25,6 +32,9 @@ namespace RoomReservationsVM.ViewModels.Booking
 
         [Required(ErrorMessage = "Polje je obvezno")]
         public int? SelectedRoomId { get; set; }
+
+        [Required(ErrorMessage = "Polje je obvezno")]
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Prosimo vnesite veljaven e-mail naslov"), EmailAddress]
         public string Email { get; set; }

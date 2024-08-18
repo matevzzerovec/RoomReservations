@@ -20,9 +20,10 @@ builder.Services.AddDbContext<ReservationsDbContext>(options => options.UseSqlSe
 
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
-
-builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IRegistryService, RegistryService>();
+
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IBookingValidator, BookingValidator>();
 
 var app = builder.Build();

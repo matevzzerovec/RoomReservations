@@ -32,6 +32,11 @@
         </div>
 
         <div class="form-group mt-2">
+            <input asp-for="Name" class="form-control" placeholder="Ime in priimek" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-2">
             <input asp-for="Email" class="form-control" type="email" placeholder="E-mail" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
@@ -66,7 +71,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Prekliči</button>
                 <button asp-action="BookRoom" class="btn btn-dark" type="submit" data-bs-dismiss="modal">
-                    Potrdi
+                    Pošlji
                 </button>
             </div>
         </div>

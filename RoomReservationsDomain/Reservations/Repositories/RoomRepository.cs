@@ -17,6 +17,11 @@ namespace RoomReservationsDAL.Reservations.Repositories
         {
             _context = context;
         }
+        public List<int> GetRoomIdList()
+        {
+            return _context.Room.Select(x => x.RoomId).ToList();
+        }
+
 
         public IQueryable<Room> GetAll()
         {
@@ -28,14 +33,22 @@ namespace RoomReservationsDAL.Reservations.Repositories
             return _context.Room.Include(x => x.RoomPictures).OrderBy(x => x.RoomId).First();
         }
 
+        public decimal GetRoomPrice(int roomId)
+        {
+            var desiredRoom = _context.Room.SingleOrDefault(x => x.RoomId == roomId);
+            if (desiredRoom != null)
+            {
+                return desiredRoom.Price;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public Room GetRoomWithPictures(int roomId)
         {
             return _context.Room.Include(x => x.RoomPictures).Single(x => x.RoomId == roomId);
-        }
-
-        public List<int> GetRoomIdList()
-        {
-            return _context.Room.Select(x => x.RoomId).ToList();
         }
     }
 }
