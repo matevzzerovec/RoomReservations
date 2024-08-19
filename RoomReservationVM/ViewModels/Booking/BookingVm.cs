@@ -12,6 +12,9 @@ namespace RoomReservationsVM.ViewModels.Booking
     public class BookingVm
     {
         [ValidateNever]
+        public string ReCaptchaSiteKey { get; set; }
+
+        [ValidateNever]
         public string ClientFeedback { get; set; }
 
         [ValidateNever]
@@ -19,6 +22,9 @@ namespace RoomReservationsVM.ViewModels.Booking
 
         [ValidateNever]
         public bool IsMailingError { get; set; }
+
+        [ValidateNever]
+        public bool IsReCaptchaError { get; set; }
 
 
         [Required(ErrorMessage = "Polje je obvezno"), DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]

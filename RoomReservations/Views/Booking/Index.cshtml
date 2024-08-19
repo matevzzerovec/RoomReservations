@@ -6,6 +6,7 @@
 
 @section Scripts {
     <script src="~/js/Booking.js" asp-append-version="true"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 }
 
 <form asp-controller="Booking" method="post">
@@ -13,6 +14,7 @@
     @Html.AntiForgeryToken()
 
     <input type="hidden" asp-for="ClientFeedback" />
+    <input type="hidden" asp-for="ReCaptchaSiteKey" />
 
     <br />
 
@@ -31,6 +33,7 @@
     {
         var alertType = "alert-success";
         if (Model.IsMailingError) alertType = "alert-warning";
+        if (Model.IsReCaptchaError) alertType = "alert-warning";
         if (Model.IsBookingError) alertType = "alert-danger";
 
         <br />
