@@ -9,13 +9,10 @@ using System.Threading.Tasks;
 
 namespace RoomReservationsVM.ViewModels.Booking
 {
-    public class BookingVm
+    public class BookingVm : CommonVm
     {
         [ValidateNever]
         public string ReCaptchaSiteKey { get; set; }
-
-        [ValidateNever]
-        public string ClientFeedback { get; set; }
 
         [ValidateNever]
         public bool IsBookingError { get; set; }
@@ -27,10 +24,12 @@ namespace RoomReservationsVM.ViewModels.Booking
         public bool IsReCaptchaError { get; set; }
 
 
-        [Required(ErrorMessage = "Polje je obvezno"), DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Polje je obvezno")]
         public DateTime? ArrivalDate { get; set; }
 
-        [Required(ErrorMessage = "Polje je obvezno"), DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Polje je obvezno")]
         public DateTime? DepartureDate { get; set; }
 
         [ValidateNever]
@@ -45,7 +44,9 @@ namespace RoomReservationsVM.ViewModels.Booking
         [Required(ErrorMessage = "Prosimo vnesite veljaven e-mail naslov"), EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Polje je obvezno"), Phone, RegularExpression(@"^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$", ErrorMessage = "Prosimo vnesite veljavno telefonsko številko vključno s kodo države.")]
+        [RegularExpression(@"^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$", ErrorMessage = "Prosimo vnesite veljavno telefonsko številko vključno s kodo države.")]
+        [Phone]
+        [Required(ErrorMessage = "Polje je obvezno")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Polje je obvezno")]

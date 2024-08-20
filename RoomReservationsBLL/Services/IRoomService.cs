@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 namespace RoomReservationsBLL.Services
 {
     public interface IRoomService
-    {        
+    {
         RoomVm GetFirstRoom();
 
         RoomVm GetNextRoom(RoomVm roomVm);
 
         RoomVm GetPrevRoom(RoomVm roomVm);
+
+        void CreateRoom(RoomVm roomVm);
     }
 }

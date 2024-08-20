@@ -24,10 +24,6 @@ namespace RoomReservationsDAL.Reservations
         {
             // Auto apply all the entity configurations from provided assembly info, instead of calling them one-by-one
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReservationsDbContext).Assembly);
-
-            // Ignore Room property for inserts, so that the user doesn't need to fill it out
-            modelBuilder.Entity<Reservation>().Ignore(r => r.Room);
-            modelBuilder.Entity<RoomPicture>().Ignore(r => r.Room);
         }
     }
 }

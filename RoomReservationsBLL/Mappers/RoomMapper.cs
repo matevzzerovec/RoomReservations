@@ -27,5 +27,18 @@ namespace RoomReservationsBLL.Mappers
 
             return roomVm;
         }
+
+        public static RRDAL.Room MapToDb(RRVM.RoomVm roomVm)
+        {
+            var roomDb = new RRDAL.Room();
+
+            roomDb.RoomId = roomVm.RoomId.GetValueOrDefault();
+            roomDb.Name = roomVm.Name;
+            roomDb.Price = roomVm.Price.GetValueOrDefault();
+            roomDb.ShortDescription = roomVm.ShortDescription;
+            roomDb.LongDescription = roomVm.LongDescription;
+
+            return roomDb;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using RoomReservationsDAL.Reservations.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using RoomReservationsDAL.Reservations.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,7 @@ namespace RoomReservationsDAL.Reservations.Repositories
 
         public bool IsRoomAvalible(int roomId, DateTime arrivalDate, DateTime departureDate)
         {
-            // Check for room overlaps
-            // https://stackoverflow.com/questions/13513932/algorithm-to-detect-overlapping-periods
+            // Check for room/dates overlaps
             var overlap = _context.Reservation.Any(
                 x => x.RoomId == roomId &&
                 x.ArrivalDate.Date < departureDate.Date &&
@@ -32,6 +32,10 @@ namespace RoomReservationsDAL.Reservations.Repositories
         public void Add(Reservation reservationDb)
         {
             _context.Add(reservationDb);
+
+            // Set navigation props to unmodified so EF doesn't try to automatically insert/update them
+            _context.Entry(reservationDb).Property(r => r.Room).IsModified = false;
+
             _context.SaveChanges();
         }
     }

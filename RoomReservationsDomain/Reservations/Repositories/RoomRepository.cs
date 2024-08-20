@@ -55,5 +55,16 @@ namespace RoomReservationsDAL.Reservations.Repositories
         {
             return _context.Room.Include(x => x.RoomPictures).SingleOrDefault(x => x.RoomId == roomId);
         }
+
+        public void Add(Room roomDb)
+        {
+            _context.Add(roomDb);
+
+            // Set navigation props to unmodified so EF doesn't try to automatically insert/update them
+            _context.Entry(roomDb).Collection(r => r.RoomPictures).IsModified = false;
+            _context.Entry(roomDb).Collection(r => r.Reservations).IsModified = false;
+
+            _context.SaveChanges();
+        }
     }
 }

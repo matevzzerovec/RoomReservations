@@ -1,0 +1,46 @@
+﻿@model RoomReservationsVM.ViewModels.RoomView.RoomVm
+
+@section Scripts {
+    <script src="~/js/CreateRoom.js" asp-append-version="true"></script>
+}
+
+<div id="divRoomBooking" class="row justify-content-center">
+    <div class="col-md-10">
+
+        <h4 class="text-center">Dodaj novo sobo</h4>
+
+        <form asp-action="CreateRoom">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <input asp-for="Name" class="form-control" placeholder="Ime sobe" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <input asp-for="Price" class="form-control" placeholder="Cena na noč (€)" />
+                <span asp-validation-for="Price" type="number" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <textarea asp-for="ShortDescription" class="form-control" placeholder="Kratek opis sobe"></textarea>
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <textarea asp-for="LongDescription" class="form-control" placeholder="Dolg opis sobe"></textarea>
+                <span asp-validation-for="LongDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2 text-center">
+                <a asp-action="Index" class="btn btn-light">Nazaj na pregled</a>
+
+                <button asp-action="Create" class="btn btn-dark" type="submit">
+                    Dodaj sobo
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

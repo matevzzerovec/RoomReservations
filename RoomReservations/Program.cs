@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using reCAPTCHA.AspNetCore;
 using RoomReservationsBLL.Services;
@@ -25,6 +26,8 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IBookingValidator, BookingValidator>();
 builder.Services.AddScoped<IMailingService, MailingService>();
+
+builder.Services.AddMvc(options => { options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()); });
 
 // Add reCAPTCHA
 builder.Services.AddRecaptcha(options =>

@@ -27,7 +27,6 @@ namespace RoomReservations.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult NextRoom(RoomVm roomVm)
         {
             var nextRoomVm = _roomService.GetNextRoom(roomVm);
@@ -38,7 +37,6 @@ namespace RoomReservations.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult PreviousRoom(RoomVm roomVm)
         {
             var prevRoomVm = _roomService.GetPrevRoom(roomVm);
@@ -47,5 +45,55 @@ namespace RoomReservations.Controllers
 
             return View("Index", prevRoomVm);
         }
+
+        [HttpGet]
+        public IActionResult AddNew()
+        {
+            return View("CreateRoom", new RoomVm());
+        }
+
+        [HttpPost]
+        public IActionResult Create(RoomVm roomVm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("CreateRoom", roomVm);
+            }
+
+            _roomService.CreateRoom(roomVm);
+
+            roomVm.ClientFeedback = "Soba je uspešno kreirana, za dodajanje slik pojdite na urejanje sobe.";
+
+            return View("CreateRoom", roomVm);
+        }
+
+        //[HttpGet]
+        //public IActionResult Edit(int id)
+        //{
+        //    var roomVm = _roomService.GetRoomById(id);
+        //    if (roomVm == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(roomVm);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(RoomVm roomVm)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _roomService.UpdateRoom(roomVm);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(roomVm);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Delete(int id)
+        //{
+        //    _roomService.DeleteRoom(id);
+        //    return RedirectToAction("Index");
+        //}
     }
 }

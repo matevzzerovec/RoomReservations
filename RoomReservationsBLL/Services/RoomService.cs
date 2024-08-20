@@ -48,6 +48,18 @@ namespace RoomReservationsBLL.Services
             return AssembleNewRoom(roomVm, prevId);
         }
 
+        public void CreateRoom(RoomVm roomVm)
+        {
+            var newRoomDb = RoomMapper.MapToDb(roomVm);
+
+            newRoomDb.LastTimestamp = DateTime.Now;
+
+            // Začasno dokler nimam userjev
+            newRoomDb.LastUser = "matevz";
+
+            _roomRepository.Add(newRoomDb);
+        }
+
         private RoomVm AssembleNewRoom(RoomVm oldRoom, int nextId)
         {
             var roomDb = _roomRepository.GetRoomWithPictures(nextId);

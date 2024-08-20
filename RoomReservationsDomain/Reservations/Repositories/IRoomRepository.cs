@@ -20,5 +20,7 @@ namespace RoomReservationsDAL.Reservations.Repositories
         Room GetRoom(int roomId);
 
         Room GetRoomWithPictures(int roomId);
+
+        void Add(Room roomDb);
     }
 }

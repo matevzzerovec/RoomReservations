@@ -45,7 +45,6 @@ namespace RoomReservationsUI.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> BookRoom(BookingVm bookingVm)
         {
             bookingVm.ClientFeedback = "";
