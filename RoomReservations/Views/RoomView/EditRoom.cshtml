@@ -1,41 +1,63 @@
 ﻿@model RoomReservationsVM.ViewModels.RoomView.RoomVm
 
-<div id="divRoomBooking" class="row justify-content-center">
-    <div class="col-md-8">
+<div class="row justify-content-center">
+    <div class="col-md-10">
 
         <h4>Uredi sobo</h4>
 
-        <form asp-action="Edit">
+       <form asp-controller="RoomView">
 
             @Html.AntiForgeryToken()
 
             <input type="hidden" asp-for="RoomId" />
 
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" placeholder="Ime sobe" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+
+            <div class="form-group mt-2">
+                <input asp-for="Price" class="form-control" placeholder="Cena na noč (€)" />
+                <span asp-validation-for="Price" type="number" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ShortDescription" class="control-label"></label>
-                <textarea asp-for="ShortDescription" class="form-control"></textarea>
+
+            <div class="form-group mt-2">
+                <textarea asp-for="ShortDescription" class="form-control" placeholder="Kratek opis sobe"></textarea>
                 <span asp-validation-for="ShortDescription" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="LongDescription" class="control-label"></label>
-                <textarea asp-for="LongDescription" class="form-control"></textarea>
+
+            <div class="form-group mt-2">
+                <textarea asp-for="LongDescription" class="form-control" placeholder="Dolg opis sobe"></textarea>
                 <span asp-validation-for="LongDescription" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+            <br />
+
+            <h6>Brisanje in nalaganje fotografij</h6>
+            <div id="picture-list">
+                @for (int i = 0; i < Model.PictureList.Count; i++)
+                {
+                    <div class="form-group mt-1">
+                        <img src="data:image/png;base64,@Convert.ToBase64String(@Model.PictureList[i].PictureData)" style="width: 150px;" />
+                        <input type="checkbox" asp-for="PictureList[i].IsDeleted" /> Izbriši
+                        <input type="hidden" asp-for="PictureList[i].RoomPictureId" />
+                    </div>
+                }
             </div>
-        </form>
+
+            <div class="form-group mt-2">
+                <input type="file" name="newPictures" multiple class="form-control" />
+            </div>
+
+            <div class="form-group mt-2 text-center">
+                <a asp-action="Index" class="btn btn-light">Nazaj na pregled</a>
+
+                <button asp-action="Save" class="btn btn-dark" type="submit">
+                    Shrani spremembe
+                </button>
+            </div>
+
+        </form> 
 
     </div>
 </div>

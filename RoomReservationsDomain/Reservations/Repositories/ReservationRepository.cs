@@ -19,6 +19,8 @@ namespace RoomReservationsDAL.Reservations.Repositories
 
         public bool IsRoomAvalible(int roomId, DateTime arrivalDate, DateTime departureDate)
         {
+            // TODO unit testi
+
             // Check for room/dates overlaps
             var overlap = _context.Reservation.Any(
                 x => x.RoomId == roomId &&
@@ -34,7 +36,7 @@ namespace RoomReservationsDAL.Reservations.Repositories
             _context.Add(reservationDb);
 
             // Set navigation props to unmodified so EF doesn't try to automatically insert/update them
-            _context.Entry(reservationDb).Property(r => r.Room).IsModified = false;
+            _context.Entry(reservationDb).Reference(r => r.Room).IsModified = false;
 
             _context.SaveChanges();
         }

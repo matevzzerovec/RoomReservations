@@ -14,16 +14,6 @@ namespace RoomReservationsVM.ViewModels.Booking
         [ValidateNever]
         public string ReCaptchaSiteKey { get; set; }
 
-        [ValidateNever]
-        public bool IsBookingError { get; set; }
-
-        [ValidateNever]
-        public bool IsMailingError { get; set; }
-
-        [ValidateNever]
-        public bool IsReCaptchaError { get; set; }
-
-
         [DisplayFormat(DataFormatString = "{0:dd.mm.yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Polje je obvezno")]
         public DateTime? ArrivalDate { get; set; }

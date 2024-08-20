@@ -62,32 +62,33 @@ namespace RoomReservations.Controllers
 
             _roomService.CreateRoom(roomVm);
 
-            roomVm.ClientFeedback = "Soba je uspešno kreirana, za dodajanje slik pojdite na urejanje sobe.";
+            roomVm.ClientFeedback = "Soba je uspešno kreirana, za dodana slik pojdite na urejanje sobe.";
 
             return View("CreateRoom", roomVm);
         }
 
-        //[HttpGet]
-        //public IActionResult Edit(int id)
-        //{
-        //    var roomVm = _roomService.GetRoomById(id);
-        //    if (roomVm == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(roomVm);
-        //}
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var roomVm = _roomService.GetRoomById(id);
 
-        //[HttpPost]
-        //public IActionResult Edit(RoomVm roomVm)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _roomService.UpdateRoom(roomVm);
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(roomVm);
-        //}
+            return View("EditRoom", roomVm);
+        }
+
+        [HttpPost]
+        public IActionResult Save(RoomVm roomVm, IFormFile[] newPictures)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("EditRoom", roomVm);
+            }
+
+            _roomService.UpdateRoom(roomVm, newPictures);
+
+            roomVm.ClientFeedback = "Soba je uspešno posodobljena!";
+
+            return View("EditRoom", roomVm);
+        }
 
         //[HttpPost]
         //public IActionResult Delete(int id)

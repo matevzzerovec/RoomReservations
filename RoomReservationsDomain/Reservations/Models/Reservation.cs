@@ -20,6 +20,6 @@ namespace RoomReservationsDAL.Reservations.Models
         public DateTime Timestamp { get; set; }
 
         // Navigation property
-        public Room Room { get; set; } = new Room();
+        public Room Room { get; set; }
     }
 }

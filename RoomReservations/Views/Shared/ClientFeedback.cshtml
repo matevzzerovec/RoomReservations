@@ -1,0 +1,17 @@
+﻿@model RoomReservationsVM.ViewModels.CommonVm
+
+
+@if (!string.IsNullOrEmpty(Model.ClientFeedback))
+{
+    var alertType = "alert-success";
+    if (Model.FeedbackWarning) alertType = "alert-warning";
+    if (Model.FeedbackDanger) alertType = "alert-danger";
+
+    <br />
+    <br />
+
+    <div class="alert @(alertType) alert-dismissible fade show" role="alert">
+        <strong>@Model.ClientFeedback</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}

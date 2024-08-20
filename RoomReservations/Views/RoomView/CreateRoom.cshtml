@@ -4,12 +4,12 @@
     <script src="~/js/CreateRoom.js" asp-append-version="true"></script>
 }
 
-<div id="divRoomBooking" class="row justify-content-center">
+<div class="row justify-content-center">
     <div class="col-md-10">
 
         <h4 class="text-center">Dodaj novo sobo</h4>
 
-        <form asp-action="CreateRoom">
+        <form asp-controller="RoomView">
 
             @Html.AntiForgeryToken()
 
@@ -40,7 +40,10 @@
                     Dodaj sobo
                 </button>
             </div>
+
         </form>
+
+        <partial name="~/Views/Shared/ClientFeedback.cshtml" />
 
     </div>
 </div>

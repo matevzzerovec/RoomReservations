@@ -29,20 +29,6 @@
 
     </div>
 
-    @if (!string.IsNullOrEmpty(Model.ClientFeedback))
-    {
-        var alertType = "alert-success";
-        if (Model.IsMailingError) alertType = "alert-warning";
-        if (Model.IsReCaptchaError) alertType = "alert-warning";
-        if (Model.IsBookingError) alertType = "alert-danger";
-
-        <br />
-        <br />
-
-        <div class="alert @(alertType) alert-dismissible fade show" role="alert">
-            <strong>@Model.ClientFeedback</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
+    <partial name="~/Views/Shared/ClientFeedback.cshtml" />
 
 </form>

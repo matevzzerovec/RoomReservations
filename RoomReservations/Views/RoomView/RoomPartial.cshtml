@@ -25,35 +25,5 @@
 
         </div>
 
-        <div class="text-center">
-            <br />
-            <a asp-action="AddNew" class="btn btn-dark">Dodaj novo sobo</a>
-            <a asp-action="Edit" asp-route-id="@Model.RoomId" class="btn btn-dark">Uredi sobo</a>
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#confirmRoomDeleteModal">
-                Izbriši sobo
-            </button>
-        </div>
-
-    </div>
-</div>
-
-<div class="modal fade" id="confirmRoomDeleteModal" tabindex="-1" aria-labelledby="confirmRoomDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body">
-                Ste prepričani, da želite izbrisati sobo?
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Prekliči</button>
-                <button asp-action="Delete" asp-route-id="@Model.RoomId" id="btnDeleteRoom" class="btn btn-dark" type="submit" data-bs-dismiss="modal" disabled="true">
-                    Potrdi
-                </button>
-            </div>
-        </div>
     </div>
 </div>

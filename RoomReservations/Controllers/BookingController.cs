@@ -53,7 +53,7 @@ namespace RoomReservationsUI.Controllers
             var recaptchaResult = await _recaptcha.Validate(Request);
             if (!recaptchaResult.success)
             {
-                bookingVm.IsReCaptchaError = true;
+                bookingVm.FeedbackWarning = true;
                 bookingVm.ClientFeedback = "Prosimo izpolnite reCaptcha test.";
 
                 return ReturnFilledVm(bookingVm);
@@ -68,7 +68,7 @@ namespace RoomReservationsUI.Controllers
             // Room booking (DB insert)
             if (!_bookingService.BookRoom(bookingVm))
             {
-                bookingVm.IsBookingError = true;
+                bookingVm.FeedbackDanger = true;
                 bookingVm.ClientFeedback = "Žal je prišlo do napake pri poskusu rezervacije.";
 
                 return ReturnFilledVm(bookingVm);
@@ -77,7 +77,7 @@ namespace RoomReservationsUI.Controllers
             // Client mailing
             if (!_mailingService.SendMailToClient(bookingVm))
             {
-                bookingVm.IsMailingError = true;
+                bookingVm.FeedbackWarning = true;
                 bookingVm.ClientFeedback = "Rezervacija je uspešna, a je prišlo do napake pri pošiljanju e-maila.";
 
                 return ReturnFilledVm(bookingVm);

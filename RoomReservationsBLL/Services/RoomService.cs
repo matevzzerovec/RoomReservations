@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RoomReservationsBLL.Mappers;
 using RoomReservationsBLL.Modules;
 using RoomReservationsDAL.Reservations.Models;
@@ -32,6 +33,15 @@ namespace RoomReservationsBLL.Services
             firstRoomVm.RoomIdList = roomIdList;
 
             return firstRoomVm;
+        }
+
+        public RoomVm GetRoomById(int roomId)
+        {
+            var roomDb = _roomRepository.GetRoomWithPictures(roomId);
+
+            var roomVm = RoomMapper.MapToVm(roomDb);
+
+            return roomVm;
         }
 
         public RoomVm GetNextRoom(RoomVm roomVm)
@@ -71,6 +81,11 @@ namespace RoomReservationsBLL.Services
             roomVm.RoomIdList = oldRoom.RoomIdList;
 
             return roomVm;
+        }
+
+        public void UpdateRoom(RoomVm roomVm, IFormFile[] newPictures)
+        {
+            throw new NotImplementedException(); // TODO
         }
     }
 }

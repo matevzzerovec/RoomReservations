@@ -1,4 +1,5 @@
-﻿using RoomReservationsVM.ViewModels.RoomView;
+﻿using Microsoft.AspNetCore.Http;
+using RoomReservationsVM.ViewModels.RoomView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,14 @@ namespace RoomReservationsBLL.Services
     {
         RoomVm GetFirstRoom();
 
+        RoomVm GetRoomById(int roomId);
+
         RoomVm GetNextRoom(RoomVm roomVm);
 
         RoomVm GetPrevRoom(RoomVm roomVm);
 
         void CreateRoom(RoomVm roomVm);
+
+        void UpdateRoom(RoomVm roomVm, IFormFile[] newPictures);
     }
 }

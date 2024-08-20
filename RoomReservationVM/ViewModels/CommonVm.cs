@@ -11,5 +11,11 @@ namespace RoomReservationsVM.ViewModels
     {
         [ValidateNever]
         public string ClientFeedback { get; set; }
+
+        [ValidateNever]
+        public bool FeedbackWarning { get; set; }
+
+        [ValidateNever]
+        public bool FeedbackDanger { get; set; }
     }
 }
