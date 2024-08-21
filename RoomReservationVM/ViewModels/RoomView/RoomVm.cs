@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace RoomReservationsVM.ViewModels.RoomView
@@ -24,6 +25,7 @@ namespace RoomReservationsVM.ViewModels.RoomView
 
         public List<PictureVm> PictureList { get; set; } = new List<PictureVm>();
 
+        [ValidateNever]
         public IFormFile[] NewPictureList { get; set; }
     }
 }

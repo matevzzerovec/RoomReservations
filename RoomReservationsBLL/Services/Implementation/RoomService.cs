@@ -38,7 +38,7 @@ namespace RoomReservationsBLL.Services.Implementation
 
             newRoomDb.LastTimestamp = DateTime.Now;
 
-            // Začasno dokler nimam userjev
+            // TODO: Začasno dokler nimam userjev
             newRoomDb.LastUser = "matevz";
 
             _roomRepository.Add(newRoomDb);

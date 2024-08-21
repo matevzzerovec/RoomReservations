@@ -62,9 +62,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Prekliči</button>
-                <button asp-action="Delete" asp-route-id="@Model.RoomId" id="btnDeleteRoom" class="btn btn-dark">
-                    Potrdi
-                </button>
+                <a asp-action="Delete" asp-route-id="@Model.RoomId" class="btn btn-dark">Potrdi</a>
             </div>
         </div>
     </div>

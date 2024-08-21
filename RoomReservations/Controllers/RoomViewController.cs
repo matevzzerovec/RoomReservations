@@ -96,10 +96,9 @@ namespace RoomReservations.Controllers
             return View("EditRoom", roomVm);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Delete(int id)
         {
-            // TODO: TEST
             _roomService.DeleteRoom(id);
 
             return RedirectToAction("Index");
