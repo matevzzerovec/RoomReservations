@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using reCAPTCHA.AspNetCore;
 using RoomReservationsBLL.Services.Implementation;
 using RoomReservationsBLL.Services.Interface;
 using RoomReservationsBLL.Validators.Booking;
+using RoomReservationsBLL.Validators.Room;
 using RoomReservationsDAL.Reservations;
 using RoomReservationsDAL.Reservations.Repositories;
 using RoomReservationsVM.Configuration;
@@ -26,9 +28,14 @@ builder.Services.AddScoped<IRegistryService, RegistryService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IBookingValidator, BookingValidator>();
+builder.Services.AddScoped<IPictureUploadValidator, PictureUploadValidator>();
 builder.Services.AddScoped<IMailingService, MailingService>();
 
+// Add Antiforgery attribute to all controller actions
 builder.Services.AddMvc(options => { options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()); });
+
+// Raise upload limit to 256 MB
+builder.Services.Configure<FormOptions>(options => { options.MultipartBodyLengthLimit = 268435456; });
 
 // Add reCAPTCHA
 builder.Services.AddRecaptcha(options =>

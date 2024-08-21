@@ -5,6 +5,8 @@ using RoomReservationsDAL.Reservations;
 using RoomReservationsBLL.Mappers;
 using RoomReservationsVM.ViewModels.RoomView;
 using RoomReservationsBLL.Services.Interface;
+using System.Linq;
+using RoomReservationsBLL.Validators.Room;
 
 namespace RoomReservations.Controllers
 {
@@ -12,11 +14,13 @@ namespace RoomReservations.Controllers
     {
         private readonly IRoomService _roomService;
         private readonly IRoomNavigationService _roomNavigationService;
+        private readonly IPictureUploadValidator _pictureUploadValidator;
 
-        public RoomViewController(IRoomService roomService, IRoomNavigationService roomNavigationService)
+        public RoomViewController(IRoomService roomService, IRoomNavigationService roomNavigationService, IPictureUploadValidator pictureUploadValidator)
         {
             _roomService = roomService;
             _roomNavigationService = roomNavigationService;
+            _pictureUploadValidator = pictureUploadValidator;
         }
 
         [HttpGet]
@@ -77,14 +81,14 @@ namespace RoomReservations.Controllers
         }
 
         [HttpPost]
-        public IActionResult Save(RoomVm roomVm, IFormFile[] newPictures)
+        public IActionResult Save(RoomVm roomVm)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || !_pictureUploadValidator.IsValid(roomVm, ModelState))
             {
                 return View("EditRoom", roomVm);
             }
 
-            _roomService.UpdateRoom(roomVm, newPictures);
+            _roomService.UpdateRoom(roomVm);
 
             roomVm.ClientFeedback = "Soba je uspešno posodobljena!";
 

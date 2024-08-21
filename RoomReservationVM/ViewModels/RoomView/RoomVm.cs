@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace RoomReservationsVM.ViewModels.RoomView
 {
@@ -22,5 +23,7 @@ namespace RoomReservationsVM.ViewModels.RoomView
         public string? LongDescription { get; set; }
 
         public List<PictureVm> PictureList { get; set; } = new List<PictureVm>();
+
+        public IFormFile[] NewPictureList { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace RoomReservationsBLL.Services.Implementation
             _roomRepository.Add(newRoomDb);
         }
 
-        public void UpdateRoom(RoomVm roomVm, IFormFile[] newPictures)
+        public void UpdateRoom(RoomVm roomVm)
         {
             throw new NotImplementedException(); // TODO
         }

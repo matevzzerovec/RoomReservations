@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RoomReservationsVM.ViewModels.RoomView;
 using System;
 using System.Collections.Generic;
@@ -6,14 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsBLL.Services.Interface
+namespace RoomReservationsBLL.Validators.Room
 {
-    public interface IRoomService
+    public interface IPictureUploadValidator
     {
-        RoomVm GetRoomById(int roomId);
-
-        void CreateRoom(RoomVm roomVm);
-
-        void UpdateRoom(RoomVm roomVm);
+        bool IsValid(RoomVm roomVm, ModelStateDictionary modelState);
     }
 }

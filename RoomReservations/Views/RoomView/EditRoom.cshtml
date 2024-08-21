@@ -5,7 +5,7 @@
 
         <h4>Uredi sobo</h4>
 
-       <form asp-controller="RoomView">
+        <form asp-controller="RoomView" method="post" enctype="multipart/form-data">
 
             @Html.AntiForgeryToken()
 
@@ -46,7 +46,8 @@
             </div>
 
             <div class="form-group mt-2">
-                <input type="file" name="newPictures" multiple class="form-control" />
+                <input asp-for="NewPictureList" type="file" multiple class="form-control" />
+                <span asp-validation-for="NewPictureList" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-2 text-center">
