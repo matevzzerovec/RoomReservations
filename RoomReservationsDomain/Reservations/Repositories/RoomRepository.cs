@@ -48,12 +48,24 @@ namespace RoomReservationsDAL.Reservations.Repositories
 
         public Room GetRoom(int roomId)
         {
-            return _context.Room.SingleOrDefault(x => x.RoomId == roomId);
+            var room = _context.Room.SingleOrDefault(x => x.RoomId == roomId);
+            if (room == null)
+            {
+                throw new Exception($"Room with ID {roomId} not found.");
+            }
+
+            return room;
         }
 
         public Room GetRoomWithPictures(int roomId)
         {
-            return _context.Room.Include(x => x.RoomPictures).SingleOrDefault(x => x.RoomId == roomId);
+            var room = _context.Room.Include(x => x.RoomPictures).SingleOrDefault(x => x.RoomId == roomId);
+            if (room == null)
+            {
+                throw new Exception($"Room with ID {roomId} not found.");
+            }
+
+            return room;
         }
 
         public void Add(Room roomDb)
@@ -63,6 +75,47 @@ namespace RoomReservationsDAL.Reservations.Repositories
             // Set navigation props to unmodified so EF doesn't try to automatically insert/update them
             _context.Entry(roomDb).Collection(r => r.RoomPictures).IsModified = false;
             _context.Entry(roomDb).Collection(r => r.Reservations).IsModified = false;
+
+            _context.SaveChanges();
+        }
+
+        public void Update(Room roomDb)
+        {
+            // Attach the room to the context, so it is tracked by EF
+            var existingRoom = _context.Room.Include(r => r.RoomPictures).FirstOrDefault(r => r.RoomId == roomDb.RoomId);
+            if (existingRoom == null)
+            {
+                throw new Exception($"Room with ID {roomDb.RoomId} not found.");
+            }
+
+            existingRoom.Name = roomDb.Name;
+            existingRoom.Price = roomDb.Price;
+            existingRoom.ShortDescription = roomDb.ShortDescription;
+            existingRoom.LongDescription = roomDb.LongDescription;
+            existingRoom.LastTimestamp = DateTime.Now;
+            existingRoom.LastUser = roomDb.LastUser;
+
+            // Update RoomPictures (Handle updating, deleting, and adding pictures)
+            existingRoom.RoomPictures = roomDb.RoomPictures;
+
+            _context.SaveChanges();
+        }
+
+        public void Delete(int roomId)
+        {
+            var existingRoom = _context.Room.Include(r => r.RoomPictures).FirstOrDefault(r => r.RoomId == roomId);
+            if (existingRoom == null)
+            {
+                throw new Exception($"Room with ID {roomId} not found.");
+            }
+
+            // Delete pictures
+            _context.RoomPicture.RemoveRange(existingRoom.RoomPictures);
+
+            // TODO: could add validation for existing reservations
+            _context.Reservation.RemoveRange(existingRoom.Reservations);
+
+            _context.Room.Remove(existingRoom);
 
             _context.SaveChanges();
         }

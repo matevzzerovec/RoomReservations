@@ -12,11 +12,6 @@ namespace RoomReservationsBLL.Validators.Room
 {
     public class PictureUploadValidator : IPictureUploadValidator
     {
-        public PictureUploadValidator()
-        {
-
-        }
-
         public bool IsValid(RoomVm roomVm, ModelStateDictionary modelState)
         {
             foreach (var picture in roomVm.NewPictureList)

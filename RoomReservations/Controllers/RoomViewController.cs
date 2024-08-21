@@ -83,6 +83,7 @@ namespace RoomReservations.Controllers
         [HttpPost]
         public IActionResult Save(RoomVm roomVm)
         {
+            // TODO: TEST
             if (!ModelState.IsValid || !_pictureUploadValidator.IsValid(roomVm, ModelState))
             {
                 return View("EditRoom", roomVm);
@@ -95,11 +96,13 @@ namespace RoomReservations.Controllers
             return View("EditRoom", roomVm);
         }
 
-        //[HttpPost]
-        //public IActionResult Delete(int id)
-        //{
-        //    _roomService.DeleteRoom(id);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            // TODO: TEST
+            _roomService.DeleteRoom(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

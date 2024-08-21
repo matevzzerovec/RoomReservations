@@ -15,5 +15,7 @@ namespace RoomReservationsBLL.Services.Interface
         void CreateRoom(RoomVm roomVm);
 
         void UpdateRoom(RoomVm roomVm);
+
+        void DeleteRoom(int roomId);
     }
 }

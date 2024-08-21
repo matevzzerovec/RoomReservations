@@ -48,5 +48,10 @@ namespace RoomReservationsBLL.Services.Implementation
         {
             throw new NotImplementedException(); // TODO
         }
+
+        public void DeleteRoom(int roomId)
+        {
+            _roomRepository.Delete(roomId);
+        }
     }
 }
