@@ -11,8 +11,9 @@ using Microsoft.Extensions.Configuration;
 using RoomReservationsVM.Configuration;
 using Microsoft.Extensions.Options;
 using RoomReservationsDAL.Reservations.Repositories;
+using RoomReservationsBLL.Services.Interface;
 
-namespace RoomReservationsBLL.Services
+namespace RoomReservationsBLL.Services.Implementation
 {
     public class MailingService : IMailingService
     {

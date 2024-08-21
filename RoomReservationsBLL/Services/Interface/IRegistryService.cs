@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsBLL.Services
+namespace RoomReservationsBLL.Services.Interface
 {
     public interface IRegistryService
     {

@@ -3,25 +3,26 @@ using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using RoomReservationsDAL.Reservations;
 using RoomReservationsBLL.Mappers;
-using RoomReservationsBLL.Services;
 using RoomReservationsVM.ViewModels.RoomView;
+using RoomReservationsBLL.Services.Interface;
 
 namespace RoomReservations.Controllers
 {
     public class RoomViewController : Controller
     {
         private readonly IRoomService _roomService;
+        private readonly IRoomNavigationService _roomNavigationService;
 
-
-        public RoomViewController(IRoomService roomService)
+        public RoomViewController(IRoomService roomService, IRoomNavigationService roomNavigationService)
         {
             _roomService = roomService;
+            _roomNavigationService = roomNavigationService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var firstRoomVm = _roomService.GetFirstRoom();
+            var firstRoomVm = _roomNavigationService.GetFirstRoom();
 
             return View("Index", firstRoomVm);
         }
@@ -29,7 +30,7 @@ namespace RoomReservations.Controllers
         [HttpPost]
         public IActionResult NextRoom(RoomVm roomVm)
         {
-            var nextRoomVm = _roomService.GetNextRoom(roomVm);
+            var nextRoomVm = _roomNavigationService.GetNextRoom(roomVm);
 
             ModelState.Clear();
 
@@ -39,7 +40,7 @@ namespace RoomReservations.Controllers
         [HttpPost]
         public IActionResult PreviousRoom(RoomVm roomVm)
         {
-            var prevRoomVm = _roomService.GetPrevRoom(roomVm);
+            var prevRoomVm = _roomNavigationService.GetPrevRoom(roomVm);
 
             ModelState.Clear();
 

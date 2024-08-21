@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using RoomReservationsBLL.Services.Interface;
 using RoomReservationsDAL.Reservations.Repositories;
 using RoomReservationsVM.ViewModels.Booking;
 using RoomReservationsVM.ViewModels.RoomView;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsBLL.Services
+namespace RoomReservationsBLL.Services.Implementation
 {
     public class RegistryService : IRegistryService
     {

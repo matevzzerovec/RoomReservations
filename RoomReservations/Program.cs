@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using reCAPTCHA.AspNetCore;
-using RoomReservationsBLL.Services;
+using RoomReservationsBLL.Services.Implementation;
+using RoomReservationsBLL.Services.Interface;
 using RoomReservationsBLL.Validators.Booking;
 using RoomReservationsDAL.Reservations;
 using RoomReservationsDAL.Reservations.Repositories;
@@ -18,10 +19,10 @@ builder.Services.Configure<AppValues>(builder.Configuration.GetSection("AppValue
 builder.Services.Configure<MailCredentials>(builder.Configuration.GetSection("MailCredentials"));
 
 // Add services
+builder.Services.AddScoped<IRoomNavigationService, RoomNavigationService>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IRegistryService, RegistryService>();
-
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IBookingValidator, BookingValidator>();

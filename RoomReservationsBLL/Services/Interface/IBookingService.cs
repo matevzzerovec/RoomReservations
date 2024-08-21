@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsBLL.Services
+namespace RoomReservationsBLL.Services.Interface
 {
-    public interface IMailingService
+    public interface IBookingService
     {
-        bool SendMailToClient(BookingVm bookingVm);
-        bool SendMailToHotel(BookingVm bookingVm);
+        public bool BookRoom(BookingVm bookingVm);
     }
 }

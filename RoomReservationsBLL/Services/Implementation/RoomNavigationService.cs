@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using RoomReservationsBLL.Mappers;
+﻿using RoomReservationsBLL.Mappers;
 using RoomReservationsBLL.Modules;
-using RoomReservationsDAL.Reservations.Models;
+using RoomReservationsBLL.Services.Interface;
 using RoomReservationsDAL.Reservations.Repositories;
 using RoomReservationsVM.ViewModels.RoomView;
 using System;
@@ -11,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsBLL.Services
+namespace RoomReservationsBLL.Services.Implementation
 {
-    public class RoomService : IRoomService
+    public class RoomNavigationService : IRoomNavigationService
     {
         private readonly IRoomRepository _roomRepository;
 
-        public RoomService(IRoomRepository roomRepository)
+        public RoomNavigationService(IRoomRepository roomRepository)
         {
             _roomRepository = roomRepository;
         }
@@ -35,15 +33,6 @@ namespace RoomReservationsBLL.Services
             return firstRoomVm;
         }
 
-        public RoomVm GetRoomById(int roomId)
-        {
-            var roomDb = _roomRepository.GetRoomWithPictures(roomId);
-
-            var roomVm = RoomMapper.MapToVm(roomDb);
-
-            return roomVm;
-        }
-
         public RoomVm GetNextRoom(RoomVm roomVm)
         {
             var nextId = IdLooperModule.GetNextId(roomVm.RoomId.GetValueOrDefault(), roomVm.RoomIdList);
@@ -58,18 +47,6 @@ namespace RoomReservationsBLL.Services
             return AssembleNewRoom(roomVm, prevId);
         }
 
-        public void CreateRoom(RoomVm roomVm)
-        {
-            var newRoomDb = RoomMapper.MapToDb(roomVm);
-
-            newRoomDb.LastTimestamp = DateTime.Now;
-
-            // Začasno dokler nimam userjev
-            newRoomDb.LastUser = "matevz";
-
-            _roomRepository.Add(newRoomDb);
-        }
-
         private RoomVm AssembleNewRoom(RoomVm oldRoom, int nextId)
         {
             var roomDb = _roomRepository.GetRoomWithPictures(nextId);
@@ -81,11 +58,6 @@ namespace RoomReservationsBLL.Services
             roomVm.RoomIdList = oldRoom.RoomIdList;
 
             return roomVm;
-        }
-
-        public void UpdateRoom(RoomVm roomVm, IFormFile[] newPictures)
-        {
-            throw new NotImplementedException(); // TODO
         }
     }
 }

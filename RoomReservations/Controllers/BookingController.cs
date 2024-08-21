@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using reCAPTCHA.AspNetCore;
-using RoomReservationsBLL.Services;
+using RoomReservationsBLL.Services.Interface;
 using RoomReservationsBLL.Validators.Booking;
 using RoomReservationsVM.Configuration;
 using RoomReservationsVM.ViewModels.Booking;

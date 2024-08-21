@@ -6,17 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsBLL.Services
+namespace RoomReservationsBLL.Services.Interface
 {
     public interface IRoomService
     {
-        RoomVm GetFirstRoom();
-
         RoomVm GetRoomById(int roomId);
-
-        RoomVm GetNextRoom(RoomVm roomVm);
-
-        RoomVm GetPrevRoom(RoomVm roomVm);
 
         void CreateRoom(RoomVm roomVm);
 
