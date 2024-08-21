@@ -36,7 +36,7 @@ namespace RoomReservationsDAL.Reservations.Repositories
             _context.Add(reservationDb);
 
             // Set navigation props to unmodified so EF doesn't try to automatically insert/update them
-            _context.Entry(reservationDb).Reference(r => r.Room).IsModified = false;
+            _context.Entry(reservationDb).Reference(r => r.Room).IsModified = false;           
 
             _context.SaveChanges();
         }

@@ -24,6 +24,7 @@ builder.Services.Configure<MailCredentials>(builder.Configuration.GetSection("Ma
 builder.Services.AddScoped<IRoomNavigationService, RoomNavigationService>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IRoomPictureRepository, RoomPictureRepository>();
 builder.Services.AddScoped<IRegistryService, RegistryService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IRoomService, RoomService>();

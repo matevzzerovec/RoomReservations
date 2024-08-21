@@ -13,11 +13,11 @@ namespace RoomReservationsDAL.Reservations.Models
         public decimal Price { get; set; }
         public string? ShortDescription { get; set; }
         public string? LongDescription { get; set; }
-        public DateTime LastTimestamp { get; set; }
+        public DateTime? LastTimestamp { get; set; }
         public string LastUser { get; set; }
 
         // Navigation properties
-        public ICollection<RoomPicture> RoomPictures { get; set; } = new List<RoomPicture>();
-        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public ICollection<RoomPicture> RoomPictures { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
     }
 }

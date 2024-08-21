@@ -1,11 +1,13 @@
 ﻿using RRVM = RoomReservationsVM.ViewModels.RoomView;
 using RRDAL = RoomReservationsDAL.Reservations.Models;
+using RoomReservationsDAL.Reservations.Models;
+using RoomReservationsVM.ViewModels.RoomView;
 
 namespace RoomReservationsBLL.Mappers
 {
-    public static class RoomMapper
+    internal static class RoomMapper
     {
-        public static RRVM.RoomVm MapToVm(RRDAL.Room roomDb)
+        internal static RRVM.RoomVm MapToVm(RRDAL.Room roomDb)
         {
             var roomVm = new RRVM.RoomVm();
 
@@ -19,6 +21,7 @@ namespace RoomReservationsBLL.Mappers
             {
                 var pictureVm = new RRVM.PictureVm();
 
+                pictureVm.RoomPictureId = pictureDb.RoomPictureId;
                 pictureVm.RoomId = pictureDb.RoomId;
                 pictureVm.PictureData = pictureDb.PictureData;
 
@@ -28,7 +31,7 @@ namespace RoomReservationsBLL.Mappers
             return roomVm;
         }
 
-        public static RRDAL.Room MapToDb(RRVM.RoomVm roomVm)
+        internal static RRDAL.Room MapToDb(RRVM.RoomVm roomVm)
         {
             var roomDb = new RRDAL.Room();
 
@@ -39,6 +42,14 @@ namespace RoomReservationsBLL.Mappers
             roomDb.LongDescription = roomVm.LongDescription;
 
             return roomDb;
+        }
+
+        internal static void MapChangesToDb(Room roomDb, RoomVm roomVm)
+        {
+            roomDb.Name = roomVm.Name;
+            roomDb.Price = roomVm.Price.GetValueOrDefault();
+            roomDb.ShortDescription = roomVm.ShortDescription;
+            roomDb.LongDescription = roomVm.LongDescription;
         }
     }
 }

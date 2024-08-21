@@ -83,7 +83,6 @@ namespace RoomReservations.Controllers
         [HttpPost]
         public IActionResult Save(RoomVm roomVm)
         {
-            // TODO: TEST
             if (!ModelState.IsValid || !_pictureUploadValidator.IsValid(roomVm, ModelState))
             {
                 return View("EditRoom", roomVm);
@@ -91,9 +90,7 @@ namespace RoomReservations.Controllers
 
             _roomService.UpdateRoom(roomVm);
 
-            roomVm.ClientFeedback = "Soba je uspešno posodobljena!";
-
-            return View("EditRoom", roomVm);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

@@ -23,6 +23,7 @@ namespace RoomReservationsVM.ViewModels.RoomView
         [Required(ErrorMessage = "Polje je obvezno")]
         public string? LongDescription { get; set; }
 
+        [ValidateNever]
         public List<PictureVm> PictureList { get; set; } = new List<PictureVm>();
 
         [ValidateNever]

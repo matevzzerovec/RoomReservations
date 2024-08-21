@@ -39,8 +39,10 @@
                 {
                     <div class="form-group mt-1">
                         <img src="data:image/png;base64,@Convert.ToBase64String(@Model.PictureList[i].PictureData)" style="width: 150px;" />
-                        <input type="checkbox" asp-for="PictureList[i].IsDeleted" /> Izbriši
                         <input type="hidden" asp-for="PictureList[i].RoomPictureId" />
+                        <input type="hidden" asp-for="PictureList[i].RoomId" />
+                        <input type="hidden" asp-for="PictureList[i].PictureData" />
+                        <input type="checkbox" asp-for="PictureList[i].IsDeleted" /> Izbriši
                     </div>
                 }
             </div>

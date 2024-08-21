@@ -11,7 +11,7 @@ namespace RoomReservationsBLL.Mappers
 {
     internal static class ReservationMapper
     {
-        public static RRDAL.Reservation MapToDb(RRVM.BookingVm bookingVm, decimal totalPrice)
+        internal static RRDAL.Reservation MapToDb(RRVM.BookingVm bookingVm, decimal totalPrice)
         {
             var reservationDb = new RRDAL.Reservation();
 

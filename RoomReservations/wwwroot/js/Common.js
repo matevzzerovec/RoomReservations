@@ -10,7 +10,7 @@ function Init() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    var buttons = document.querySelectorAll('button[type=submit]');
+    var buttons = document.querySelectorAll('button');
 
     // Enable all buttons once form is completely loaded
     buttons.forEach(button => {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.addEventListener("beforeunload", function () {
-    var buttons = document.querySelectorAll('button[type=submit]');
+    var buttons = document.querySelectorAll('button');
 
     // Disable all buttons when form is posted
     buttons.forEach(button => {

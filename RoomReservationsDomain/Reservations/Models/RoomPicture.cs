@@ -13,6 +13,6 @@ namespace RoomReservationsDAL.Reservations.Models
         public byte[] PictureData { get; set; }
 
         // Navigation property
-        public Room Room { get; set; } = new Room();
+        public Room Room { get; set; }
     }
 }

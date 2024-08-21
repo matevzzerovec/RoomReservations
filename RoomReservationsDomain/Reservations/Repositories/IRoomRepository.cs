@@ -21,10 +21,12 @@ namespace RoomReservationsDAL.Reservations.Repositories
 
         Room GetRoomWithPictures(int roomId);
 
+        Room GetRoomWithPicturesReservations(int roomId);
+
         void Add(Room roomDb);
 
         void Update(Room roomDb);
 
-        void Delete(int roomId);
+        void Delete(Room roomDb);
     }
 }
