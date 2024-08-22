@@ -15,6 +15,12 @@ namespace RoomReservationsUI.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View("~/Views/Shared/Error/AccessDenied.cshtml");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult GenericError()
         {

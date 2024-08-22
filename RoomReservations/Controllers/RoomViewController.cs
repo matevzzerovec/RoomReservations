@@ -7,6 +7,7 @@ using RoomReservationsVM.ViewModels.RoomView;
 using RoomReservationsBLL.Services.Interface;
 using System.Linq;
 using RoomReservationsBLL.Validators.Room;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RoomReservations.Controllers
 {
@@ -52,12 +53,14 @@ namespace RoomReservations.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddNew()
         {
             return View("CreateRoom", new RoomVm());
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(RoomVm roomVm)
         {
             if (!ModelState.IsValid)
@@ -73,6 +76,7 @@ namespace RoomReservations.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var roomVm = _roomService.GetRoomById(id);
@@ -81,6 +85,7 @@ namespace RoomReservations.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Save(RoomVm roomVm)
         {
             if (!ModelState.IsValid || !_pictureUploadValidator.IsValid(roomVm, ModelState))
@@ -94,6 +99,7 @@ namespace RoomReservations.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             _roomService.DeleteRoom(id);

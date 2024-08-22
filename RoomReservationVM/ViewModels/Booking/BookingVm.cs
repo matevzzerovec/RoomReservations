@@ -31,7 +31,8 @@ namespace RoomReservationsVM.ViewModels.Booking
         [Required(ErrorMessage = "Polje je obvezno")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Prosimo vnesite veljaven e-mail naslov"), EmailAddress]
+        [EmailAddress(ErrorMessage = "Neveljavna e-pošta")]
+        [Required(ErrorMessage = "Polje je obvezno")]
         public string Email { get; set; }
 
         [RegularExpression(@"^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$", ErrorMessage = "Prosimo vnesite veljavno telefonsko številko vključno s kodo države.")]
