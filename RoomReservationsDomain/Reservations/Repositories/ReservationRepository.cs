@@ -19,8 +19,6 @@ namespace RoomReservationsDAL.Reservations.Repositories
 
         public bool IsRoomAvalible(int roomId, DateTime arrivalDate, DateTime departureDate)
         {
-            // TODO unit testi
-
             // Check for room/dates overlaps
             var overlap = _context.Reservation.Any(
                 x => x.RoomId == roomId &&

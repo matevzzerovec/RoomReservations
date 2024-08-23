@@ -8,6 +8,7 @@ using RoomReservationsBLL.Services.Interface;
 using System.Linq;
 using RoomReservationsBLL.Validators.Room;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace RoomReservations.Controllers
 {
@@ -68,7 +69,7 @@ namespace RoomReservations.Controllers
                 return View("CreateRoom", roomVm);
             }
 
-            _roomService.CreateRoom(roomVm);
+            _roomService.CreateRoom(roomVm, User.FindFirstValue(ClaimTypes.Email));
 
             roomVm.ClientFeedback = "Soba je uspešno kreirana, za dodana slik pojdite na urejanje sobe.";
 
@@ -93,7 +94,7 @@ namespace RoomReservations.Controllers
                 return View("EditRoom", roomVm);
             }
 
-            _roomService.UpdateRoom(roomVm);
+            _roomService.UpdateRoom(roomVm, User.FindFirstValue(ClaimTypes.Email));
 
             return RedirectToAction("Index");
         }

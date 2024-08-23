@@ -12,9 +12,9 @@ namespace RoomReservationsBLL.Services.Interface
     {
         RoomVm GetRoomById(int roomId);
 
-        void CreateRoom(RoomVm roomVm);
+        void CreateRoom(RoomVm roomVm, string email);
 
-        void UpdateRoom(RoomVm roomVm);
+        void UpdateRoom(RoomVm roomVm, string email);
 
         void DeleteRoom(int roomId);
     }

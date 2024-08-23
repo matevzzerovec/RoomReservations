@@ -35,17 +35,16 @@ namespace RoomReservationsBLL.Services.Implementation
             return roomVm;
         }
 
-        public void CreateRoom(RoomVm roomVm)
+        public void CreateRoom(RoomVm roomVm, string email)
         {
             var newRoomDb = RoomMapper.MapToDb(roomVm);
 
-            // TODO: Začasno dokler nimam userjev
-            newRoomDb.LastUser = "matevz";
+            newRoomDb.LastUser = email;
 
             _roomRepository.Add(newRoomDb);
         }
 
-        public void UpdateRoom(RoomVm roomVm)
+        public void UpdateRoom(RoomVm roomVm, string email)
         {
             // Delete unwanted pictures
             var unwantedPicuresDbList = _roomPictureRepository.GetList(roomVm.PictureList
@@ -63,9 +62,7 @@ namespace RoomReservationsBLL.Services.Implementation
             var roomDb = _roomRepository.GetRoom(roomVm.RoomId.GetValueOrDefault());
 
             RoomMapper.MapChangesToDb(roomDb, roomVm);
-
-            // TODO: Začasno dokler nimam userjev
-            roomDb.LastUser = "matevz";
+            roomDb.LastUser = email;
 
             _roomRepository.Update(roomDb);
         }
