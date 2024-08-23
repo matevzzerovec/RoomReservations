@@ -16,13 +16,16 @@ namespace RoomReservationsBLL.Mappers
         {
             var result = new List<RoomPicture>();
 
-            foreach (var picture in newPictureList)
+            if (newPictureList != null)
             {
-                result.Add(new RoomPicture()
+                foreach (var picture in newPictureList)
                 {
-                    RoomId = roomId,
-                    PictureData = ConverterModule.ConvertToBytes(picture)
-                });
+                    result.Add(new RoomPicture()
+                    {
+                        RoomId = roomId,
+                        PictureData = ConverterModule.ConvertToBytes(picture)
+                    });
+                }
             }
 
             return result;

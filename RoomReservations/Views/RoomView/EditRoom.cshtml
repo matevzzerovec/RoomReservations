@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-group mt-2">
-                <input asp-for="NewPictureList" type="file" multiple class="form-control" />
+                <input asp-for="NewPictureList" type="file" multiple class="form-control" accept="image/*" />
                 <span asp-validation-for="NewPictureList" class="text-danger"></span>
             </div>
 
@@ -60,7 +60,7 @@
                 </button>
             </div>
 
-        </form> 
+        </form>
 
     </div>
 </div>

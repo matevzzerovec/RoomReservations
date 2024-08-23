@@ -14,15 +14,18 @@ namespace RoomReservationsBLL.Validators.Room
     {
         public bool IsValid(RoomVm roomVm, ModelStateDictionary modelState)
         {
-            foreach (var picture in roomVm.NewPictureList)
+            if (roomVm.NewPictureList != null)
             {
-                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
-                var extension = Path.GetExtension(picture.FileName).ToLower();
-
-                if (!allowedExtensions.Contains(extension))
+                foreach (var picture in roomVm.NewPictureList)
                 {
-                    modelState.AddModelError(nameof(roomVm.NewPictureList), $"Slike so lahko samo fomrata: {string.Join(" ", allowedExtensions)}");
-                    return false;
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                    var extension = Path.GetExtension(picture.FileName).ToLower();
+
+                    if (!allowedExtensions.Contains(extension))
+                    {
+                        modelState.AddModelError(nameof(roomVm.NewPictureList), $"Slike so lahko samo fomrata: {string.Join(" ", allowedExtensions)}");
+                        return false;
+                    }
                 }
             }
 
