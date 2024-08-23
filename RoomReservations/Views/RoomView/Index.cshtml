@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Hotel Elitostroj";
+}
+@model RoomReservationsVM.ViewModels.RoomView.RoomVm
+
+<form asp-controller="RoomView" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="RoomId" />
+    <input type="hidden" asp-for="Name" />
+    <input type="hidden" asp-for="Price" />
+    <input type="hidden" asp-for="ShortDescription" />
+    <input type="hidden" asp-for="LongDescription" />
+
+    @for (int i = 0; i < Model.RoomIdList.Count; i++)
+    {
+        <input type="hidden" asp-for="RoomIdList[i]" />
+    }
+
+    <br />
+
+    <div class="text-center">
+        <h4>Dobrodošli na spletni strani hotela Elitostroj</h4>
+        <p>Vabljeni k pregledu nastanitev!</p>
+
+        <div class="container mt-5">
+
+            <partial name="~/Views/RoomView/RoomPartial.cshtml" />
+
+            <partial name="~/Views/RoomView/PicturesPartial.cshtml" />
+
+        </div>
+
+    </div>
+
+</form>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="text-center">
+                <br />
+                <a asp-action="AddNew" class="btn btn-dark">Dodaj novo sobo</a>
+                <a asp-action="Edit" asp-route-id="@Model.RoomId" class="btn btn-dark">Uredi sobo</a>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#confirmRoomDeleteModal">
+                    Izbriši sobo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmRoomDeleteModal" tabindex="-1" aria-labelledby="confirmRoomDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    Ste prepričani, da želite izbrisati sobo?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Prekliči</button>
+                    <a asp-action="Delete" asp-route-id="@Model.RoomId" class="btn btn-dark">Potrdi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

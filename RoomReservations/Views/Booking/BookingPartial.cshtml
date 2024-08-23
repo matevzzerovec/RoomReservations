@@ -1,0 +1,84 @@
+﻿@model RoomReservationsVM.ViewModels.Booking.BookingVm
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="form-group row">
+            <div class="col-md-6 d-flex align-items-center">
+                <label class="mr-2 mb-0" style="width: 80px">Datum od:</label>
+                <input asp-for="ArrivalDate" asp-format="{0:dd.MM.yyyy}" class="form-control" style="width: 140px; margin-left: 1rem;" type="text" />
+            </div>
+
+            <div class="col-md-6 d-flex align-items-center">
+                <label class="mr-2 mb-0" style="width: 80px">Datum do:</label>
+                <input asp-for="DepartureDate" asp-format="{0:dd.MM.yyyy}" class="form-control" style="width: 140px; margin-left: 1rem;" type="text" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 d-flex align-items-center">
+                <span asp-validation-for="ArrivalDate" class="text-danger ml-2"></span>
+            </div>
+
+            <div class="col-md-6 d-flex align-items-center">
+                <span asp-validation-for="DepartureDate" class="text-danger ml-2"></span>
+            </div>
+        </div>
+
+        <div class="form-group mt-2">
+            <select asp-for="SelectedRoomId" class="form-control" asp-items="Model.RoomSelectList"></select>
+            <span asp-validation-for="SelectedRoomId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-2">
+            <input asp-for="Name" class="form-control" placeholder="Ime in priimek" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-2">
+            <input asp-for="Email" class="form-control" type="email" placeholder="E-mail" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-2">
+            <input asp-for="PhoneNumber" class="form-control" type="tel" placeholder="0038641500600" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-2">
+            <textarea asp-for="CustomerNote" class="form-control" placeholder="Pusti sporočilo:"></textarea>
+            <span asp-validation-for="CustomerNote" class="text-danger"></span>
+        </div>
+
+        <button type="button" class="btn btn-dark mt-2" data-bs-toggle="modal" data-bs-target="#confirmBookingModal">
+            Rezerviraj
+        </button>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="confirmBookingModal" tabindex="-1" aria-labelledby="confirmBookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="g-recaptcha mt-2" data-sitekey="@Model.ReCaptchaSiteKey" data-callback="RecaptchaCompleted"></div>
+            </div>
+
+            <div class="modal-body">
+                Prosimo izpolnite test in potrdite rezervacijo.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Prekliči</button>
+                <button asp-action="BookRoom" id="btnBookRoom" class="btn btn-dark" type="submit" data-bs-dismiss="modal" disabled="true">
+                    Pošlji
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

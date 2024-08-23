@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsDomain.Reservations.Models
+namespace RoomReservationsDAL.Reservations.Models
 {
     public class RoomPicture
     {
@@ -12,7 +12,7 @@ namespace RoomReservationsDomain.Reservations.Models
         public int RoomId { get; set; }
         public byte[] PictureData { get; set; }
 
-        // Reverse navigation
-        public Room Room { get; set; } = new Room();
+        // Navigation property
+        public Room Room { get; set; }
     }
 }

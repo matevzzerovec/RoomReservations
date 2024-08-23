@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomReservationsDomain.Reservations.Models
+namespace RoomReservationsDAL.Reservations.Models
 {
     public class Reservation
     {
@@ -20,6 +20,6 @@ namespace RoomReservationsDomain.Reservations.Models
         public DateTime Timestamp { get; set; }
 
         // Navigation property
-        public Room Room { get; set; } = new Room();
+        public Room Room { get; set; }
     }
 }
